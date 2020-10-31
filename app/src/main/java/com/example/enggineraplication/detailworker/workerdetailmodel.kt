@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 
 data class workerdetailModel(
+    val name:String,
     val id_worker:String,
     val id_user: String,
     val jobdesk: String,

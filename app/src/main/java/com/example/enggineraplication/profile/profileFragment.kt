@@ -11,9 +11,8 @@ import com.example.enggineraplication.PreferenceHelper
 import com.example.enggineraplication.databinding.FragmentProfileBinding
 import com.example.enggineraplication.detailworker.detailworkerResponse
 import com.example.enggineraplication.detailworker.detailworkerapiservice
-import com.example.enggineraplication.home.homeFragment
 import com.example.enggineraplication.login.ApiClient
-import com.example.enggineraplication.parentActivity
+import com.example.enggineraplication.updateprofile.updateProfileActivity
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 
@@ -40,10 +39,9 @@ class profileFragment : Fragment() {
         binding.exprience.setOnClickListener {
             startActivity(Intent(context, experienceProfileActivity::class.java))
         }
-//        binding.github.setOnClickListener{
-//            val intent=Intent(activity,GithubActivity::class.java)
-//            startActivity(intent)
-//        }
+binding.updateprofile.setOnClickListener {
+    startActivity(Intent(context, updateProfileActivity::class.java))
+}
         return binding.root
 
     }
@@ -61,7 +59,7 @@ class profileFragment : Fragment() {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    service?.getAllWorker("29")
+                    service?.getAllWorker("30")
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
@@ -69,12 +67,14 @@ class profileFragment : Fragment() {
 
             if (response is detailworkerResponse) {
                 Log.d("android1", response.data.toString())
+                binding.tvNamedetail.text=response.data?.name
                 binding.etJobdesk.text=response.data?.jobdesk
                 binding.etDomicile.text=response.data?. domicile
                 binding.etDescworker.text=response.data?.description_personal
                 binding.etInstagram.text=response.data?.instagram
                 binding.etGithub.text=response.data?.github
                 binding.etGitlab.text=response.data?.gitlab
+
 
                 Picasso.get().load("http://35.172.182.122:8080/uploads/"+response.data?.image).into(binding.imageView)
 

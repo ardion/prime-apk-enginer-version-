@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".profile.addPortoActivity"></activity>
+        <activity android:name=".addskill.addSkillActivity"></activity>
+        <activity android:name=".postprofile.postProfileActivity" />
+        <activity android:name=".updateprofile.updateProfileActivity" />
+        <activity android:name=".profile.addPortoActivity" />
         <activity android:name=".profile.addExperienceActivity" />
         <activity android:name=".profile.experienceProfileActivity" />
         <activity android:name=".profile.portoProfileActivity" />

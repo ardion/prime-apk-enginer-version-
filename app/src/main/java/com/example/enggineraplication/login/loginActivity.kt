@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.enggineraplication.*
 import com.example.enggineraplication.databinding.ActivityLoginBinding
+import com.example.enggineraplication.postprofile.postProfileActivity
 import com.example.enggineraplication.regis.RegisActivity
 import kotlinx.coroutines.*
 
@@ -47,7 +48,7 @@ class loginActivity : BaseActivity() {
 
     private fun moveIntent(){
 
-        startActivity(Intent(this,parentActivity::class.java))
+        startActivity(Intent(this,postProfileActivity::class.java))
         finish()
     }
 

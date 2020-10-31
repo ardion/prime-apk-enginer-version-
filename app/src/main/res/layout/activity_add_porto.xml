@@ -14,30 +14,77 @@
             android:paddingHorizontal="16dp"
             android:gravity="center"
             tools:context=".project.AddProjectActivity">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Portofolio"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginBottom="5dp"
+                android:text="Aplication name"
+                android:textSize="18dp" />
 
             <EditText
                 android:id="@+id/et_nameapk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Aplication Name" />
+                android:background="@drawable/ic_rexperporto"
+                android:paddingLeft="20dp"
+                android:layout_marginBottom="30dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginBottom="5dp"
+                android:text="Link repository"
+                android:textSize="18dp" />
 
             <EditText
                 android:id="@+id/et_linkrepo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Link Repository"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/ic_rexperporto"
+                android:paddingLeft="20dp"
                 android:inputType="text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginBottom="5dp"
+                android:text="Type repository"
+                android:textSize="18dp" />
+
             <EditText
                 android:id="@+id/et_typerepo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Type Repository"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/ic_rexperporto"
+                android:paddingLeft="20dp"
                 android:inputType="text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginBottom="5dp"
+                android:text="Type portofolio"
+                android:textSize="18dp" />
             <EditText
                 android:id="@+id/et_typeporto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Type Portofolio"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/ic_rexperporto"
+                android:paddingLeft="20dp"
                 android:inputType="text" />
 
 
@@ -47,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Image"
+                android:fontFamily="sans-serif-black"
                 android:textSize="18sp"/>
 
             <Button
@@ -69,8 +117,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@drawable/ic_submitexperporto"
+                android:fontFamily="sans-serif-black"
                 android:layout_marginBottom="30dp"
-                android:text="Submit" />
+                android:textColor="#FBB017"
+                android:text="Add portofolio" />
 
         </LinearLayout>
 
