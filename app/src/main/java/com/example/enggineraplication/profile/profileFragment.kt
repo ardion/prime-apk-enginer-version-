@@ -7,11 +7,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.enggineraplication.Constant
 import com.example.enggineraplication.PreferenceHelper
+import com.example.enggineraplication.addskill.addSkillActivity
 import com.example.enggineraplication.databinding.FragmentProfileBinding
 import com.example.enggineraplication.detailworker.detailworkerResponse
 import com.example.enggineraplication.detailworker.detailworkerapiservice
+import com.example.enggineraplication.home.homeaAdabter2
 import com.example.enggineraplication.login.ApiClient
+import com.example.enggineraplication.profile.skillprofile.skillAdabter
+import com.example.enggineraplication.profile.skillprofile.skillApiService
+import com.example.enggineraplication.profile.skillprofile.skillModel
+import com.example.enggineraplication.profile.skillprofile.skillResponse
 import com.example.enggineraplication.updateprofile.updateProfileActivity
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
@@ -20,16 +32,22 @@ class profileFragment : Fragment() {
 
     lateinit var binding: FragmentProfileBinding
     lateinit var sharedPref: PreferenceHelper
+    private lateinit var recyclerSkill : skillAdabter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+//        recyclerSkill = skillAdabter()
         binding= FragmentProfileBinding.inflate(inflater)
+
+        binding.recyclerskill.adapter = skillAdabter()
+//        binding.recyclerskill.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.recyclerskill.layoutManager = GridLayoutManager(requireContext(),3)
         sharedPref= context?.let { PreferenceHelper(it) }!!
 
-
+ binding.etEmail.text=sharedPref.getString(Constant.EMAIL)
 
         useCoroutineToCallAPI()
         skillAPI()
@@ -42,6 +60,9 @@ class profileFragment : Fragment() {
 binding.updateprofile.setOnClickListener {
     startActivity(Intent(context, updateProfileActivity::class.java))
 }
+        binding.addskill.setOnClickListener {
+            startActivity(Intent(context, addSkillActivity::class.java))
+        }
         return binding.root
 
     }
@@ -59,7 +80,7 @@ binding.updateprofile.setOnClickListener {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    service?.getAllWorker("30")
+                    service?.getAllWorker(sharedPref.getString(Constant.PREF_ID))
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
@@ -101,7 +122,7 @@ binding.updateprofile.setOnClickListener {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    service?.getAllSkill("30")
+                    service?.getAllSkill(sharedPref.getString(Constant.PREF_ID))
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
@@ -109,7 +130,17 @@ binding.updateprofile.setOnClickListener {
 
             if (response is skillResponse) {
                 Log.d("androskil", response.data.toString())
-                binding.etSkill.text=response.data?.skill.toString()
+                Toast.makeText(context,"usecorotine", Toast.LENGTH_SHORT).show()
+//                Log.d("android1", response.data.toString())
+                val list = response.data?.map {
+                    skillModel(
+                        it.skill.orEmpty(),
+                        it.id_skill.orEmpty()
+                    )
+                } ?: listOf()
+                Log.d("hhhh", list.toString())
+
+                (binding.recyclerskill.adapter as skillAdabter).addList(list)
 
 
             } else if (response is Throwable) {

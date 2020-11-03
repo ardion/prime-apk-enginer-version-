@@ -61,7 +61,7 @@ class updateProfileActivity : AppCompatActivity() {
             viewModel.setLoginService(service)
         }
 
-
+        binding.tvNamedetail.text=sharedPref.getString(Constant.NAME_USER)
 
         binding.updateprofilepoto.setOnClickListener {
             //check runtime permission
@@ -133,16 +133,16 @@ class updateProfileActivity : AppCompatActivity() {
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
             val a=sharedPref.getString(Constant.PREF_ID)
-            val id_user = createPartFromString("58")
-            val jobdesk = createPartFromString(binding.etJobdesk.text.toString())
-            val domicile = createPartFromString(binding.etDomicile.text.toString())
-            Log.d("jobdeskcoba",binding.etDomicile.text.toString())
-            val workplace = createPartFromString(binding.etWorkplace.text.toString())
-            val job_status = createPartFromString(binding.etJobstatus.text.toString())
-            val instagram = createPartFromString(binding.etInstagram.text.toString())
-            val github = createPartFromString(binding.etGithub.text.toString())
-            val gitlab = createPartFromString(binding.etGitlab.text.toString())
-            val description_personal = createPartFromString(binding.etDesc.text.toString())
+            val id_user = createPartFromString("$a")
+            val jobdesk = createPartFromString(binding.etJobdesku.text.toString())
+            val domicile = createPartFromString(binding.etDomicileu.text.toString())
+            Log.d("jobdeskcoba",binding.etDomicileu.text.toString())
+            val workplace = createPartFromString(binding.etWorkplaceu.text.toString())
+            val job_status = createPartFromString(binding.etJobstatusu.text.toString())
+            val instagram = createPartFromString(binding.etInstagramu.text.toString())
+            val github = createPartFromString(binding.etGithubu.text.toString())
+            val gitlab = createPartFromString(binding.etGitlabu.text.toString())
+            val description_personal = createPartFromString(binding.etDescu.text.toString())
 
 
 

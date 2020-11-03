@@ -6,10 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.enggineraplication.BaseActivity
-import com.example.enggineraplication.Constant
-import com.example.enggineraplication.PreferenceHelper
-import com.example.enggineraplication.R
+import com.example.enggineraplication.*
 import com.example.enggineraplication.databinding.ActivityRegisBinding
 import com.example.enggineraplication.login.ApiClient
 import com.example.enggineraplication.login.loginActivity
@@ -36,6 +33,9 @@ class RegisActivity : BaseActivity() {
             Log.d("pwcoba",binding.pw.text.toString())
             Log.d("emailcoba",binding.email.text.toString())
             callSignInApi()
+        }
+        binding.signin.setOnClickListener {
+            moveIntent()
         }
     }
     override fun onStart() {
@@ -106,10 +106,10 @@ class RegisActivity : BaseActivity() {
         }
     }
 
-    override fun onDestroy() {
-        if (!sharedPref.getBoolean(Constant.pref_is_login)) coroutineScope.cancel()
-        super.onDestroy()
-    }
+//    override fun onDestroy() {
+//        if (!sharedPref.getBoolean(Constant.pref_is_login)) coroutineScope.cancel()
+//        super.onDestroy()
+//    }
 
 }
 

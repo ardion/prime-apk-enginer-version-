@@ -15,6 +15,8 @@ import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.enggineraplication.Constant
+import com.example.enggineraplication.PreferenceHelper
 import com.example.enggineraplication.R
 import com.example.enggineraplication.databinding.ActivityAddExperienceBinding
 import com.example.enggineraplication.databinding.ActivityAddPortoBinding
@@ -29,6 +31,7 @@ import java.io.File
 class addPortoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddPortoBinding
     private lateinit var viewModel: AddPortoViewModel
+    lateinit var sharedPref: PreferenceHelper
 
     companion object {
         //image pick code
@@ -41,6 +44,7 @@ class addPortoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_porto)
+        sharedPref= PreferenceHelper(this)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_porto)
         viewModel = ViewModelProvider(this).get(AddPortoViewModel::class.java)
         val service = ApiClient.getApiClient(this)?.create(portofolioApiService::class.java)
@@ -112,8 +116,8 @@ class addPortoActivity : AppCompatActivity() {
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
 
-
-            val id_worker = createPartFromString("29")
+            var ad=sharedPref.getString(Constant.PREF_ID)
+            val id_worker = createPartFromString("$ad")
             val name_aplication = createPartFromString(binding.etNameapk.text.toString())
             val link_repository = createPartFromString(binding.etLinkrepo.text.toString())
             val type_repository = createPartFromString(binding.etTyperepo.text.toString())

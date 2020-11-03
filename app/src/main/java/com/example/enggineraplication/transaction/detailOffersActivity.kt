@@ -59,7 +59,7 @@ class detailOffersActivity : AppCompatActivity() {
                 Log.d("test", "call API = ${Thread.currentThread().name}")
 
                 try {
-                    service?.patchtransaction("6", decision)
+                    service?.patchtransaction(intent.getStringExtra(notifFragment.orderworker), decision)
                 } catch (e: Throwable) {
                     Log.e("onError", "onError : " + e.message);
                     e.printStackTrace()

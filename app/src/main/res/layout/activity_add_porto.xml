@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarslide"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@drawable/ic_group_925"
+        android:theme="@style/toolbar"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Prime"
+                android:textSize="30dp"
+                android:textColor="#FAF9F8"
+                android:fontFamily="cursive"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -126,5 +154,6 @@
         </LinearLayout>
 
     </ScrollView>
+    </LinearLayout>
 
 </layout>

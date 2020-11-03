@@ -53,8 +53,7 @@ class portoProfileActivity : AppCompatActivity() {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    val a=sharedPref.getString(Constant.PREF_IDWORKER)
-                    service?.getAllPorto("29")
+                    service?.getAllPorto(sharedPref.getString(Constant.PREF_ID))
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }

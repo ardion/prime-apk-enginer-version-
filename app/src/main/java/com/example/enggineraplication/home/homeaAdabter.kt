@@ -39,13 +39,6 @@ class homeaAdabter(val items: ArrayList<workerModel>,val listener: OnClickViewLi
 
     class homeHolder( val binding: ItemWorkerBinding) : RecyclerView.ViewHolder(binding.root)
 
-
-
-//fun updatelist(list: MutableList<workerModel>){
-//    items = list
-//    notifyDataSetChanged()
-//}
-////
     interface OnClickViewListener{
         fun OnClick(id:String)
     }

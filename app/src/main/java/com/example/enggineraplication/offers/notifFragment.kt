@@ -63,15 +63,15 @@ class notifFragment : Fragment() {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    val a = sharedPref.getString(Constant.PREF_IDWORKER)
-                    service?.getAllNotif("30")
+                    val a = sharedPref.getString(Constant.PREF_ID)
+                    service?.getAllNotif(a)
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
             }
 
             if (response is notifResponse) {
-                Log.d("android1", response.data.toString())
+
                 val list = response.data?.map {
                     notifModel(
                         it.image.orEmpty(),
@@ -86,6 +86,18 @@ class notifFragment : Fragment() {
                         it.status.orEmpty()
                     )
                 } ?: listOf()
+
+                if (response.data.isEmpty()){
+                    Log.d("androoooo", response.data.toString())
+                    binding.recyclerView.visibility = View.GONE
+                }else {
+                    binding.imagenotif.visibility = View.GONE
+                }
+
+
+
+
+
 
 
                 (binding.recyclerView.adapter as notifAdabter).addList(list)

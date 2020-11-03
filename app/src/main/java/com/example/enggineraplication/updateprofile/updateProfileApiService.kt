@@ -8,7 +8,7 @@ import retrofit2.http.Part
 
 interface updateProfileApiService {
     @Multipart
-    @PUT("worker/30")
+    @PUT("worker/66")
     suspend fun updateprofileworker(
         @Part("id_user") id_user: RequestBody,
         @Part("jobdesk") jobdesk: RequestBody,

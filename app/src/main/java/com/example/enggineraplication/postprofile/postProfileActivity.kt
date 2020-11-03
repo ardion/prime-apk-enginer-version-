@@ -82,7 +82,7 @@ class postProfileActivity : AppCompatActivity() {
         }
 
 
-
+binding.tvNamedetailp.text=sharedPref.getString(Constant.NAME_USER)
 //        Log.d("tesp", sharedPref.getString(Constant.PREF_IDCOMPANY).toString())
     }
 
@@ -139,15 +139,16 @@ class postProfileActivity : AppCompatActivity() {
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
             val a=sharedPref.getString(Constant.PREF_ID)
-            val id_user = createPartFromString("58")
-            val jobdesk = createPartFromString(binding.etJobdesk.text.toString())
-            val domicile = createPartFromString(binding.etDomicile.text.toString())
-            val workplace = createPartFromString(binding.etWorkplace.text.toString())
-            val job_status = createPartFromString(binding.etJobstatus.text.toString())
-            val instagram = createPartFromString(binding.etInstagram.text.toString())
-            val github = createPartFromString(binding.etGithub.text.toString())
-            val gitlab = createPartFromString(binding.etGitlab.text.toString())
-            val description_personal = createPartFromString(binding.etDesc.text.toString())
+            val id_user = createPartFromString("$a")
+            val jobdesk = createPartFromString(binding.etJobdeskp.text.toString())
+            Log.d("testtttttt",binding.etJobdeskp.text.toString())
+            val domicile = createPartFromString(binding.etDomicilep.text.toString())
+            val workplace = createPartFromString(binding.etWorkplacep.text.toString())
+            val job_status = createPartFromString(binding.etJobstatusp.text.toString())
+            val instagram = createPartFromString(binding.etInstagramp.text.toString())
+            val github = createPartFromString(binding.etGithubp.text.toString())
+            val gitlab = createPartFromString(binding.etGitlabp.text.toString())
+            val description_personal = createPartFromString(binding.etDescp.text.toString())
 
 
 

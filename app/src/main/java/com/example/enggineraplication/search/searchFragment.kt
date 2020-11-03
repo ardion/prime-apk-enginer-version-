@@ -99,7 +99,9 @@ class searchFragment : Fragment() {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
                     var a=binding.spiner.selectedItem.toString()
-                    if (a == "") {
+                    Log.d("koloomm", a)
+
+                    if (a == "name") {
                         service?.getAllSearchname(100,search)
                     } else if(a=="skill"){
                        service?.getAllSearchSkill(100,search)

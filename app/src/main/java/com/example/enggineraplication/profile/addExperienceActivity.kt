@@ -15,6 +15,8 @@ import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.enggineraplication.Constant
+import com.example.enggineraplication.PreferenceHelper
 import com.example.enggineraplication.R
 import com.example.enggineraplication.databinding.ActivityAddExperienceBinding
 import com.example.enggineraplication.experience.experienceApiService
@@ -28,6 +30,7 @@ import java.io.File
 class addExperienceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddExperienceBinding
     private lateinit var viewModel: AddExperienceViewModel
+    lateinit var sharedPref: PreferenceHelper
 
     companion object {
         //image pick code
@@ -40,6 +43,7 @@ class addExperienceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_experience)
+        sharedPref= PreferenceHelper(this)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_experience)
         viewModel = ViewModelProvider(this).get(AddExperienceViewModel::class.java)
         val service = ApiClient.getApiClient(this)?.create(experienceApiService::class.java)
@@ -111,9 +115,6 @@ class addExperienceActivity : AppCompatActivity() {
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
 
-//            val id_company = createPartFromString("29")
-//            val name_project = createPartFromString("Web sigma")
-//            val description_project = createPartFromString("Pembuatan Web sigma consulting")
 
             img = reqFile?.let { it1 ->
                 MultipartBody.Part.createFormData("image", file.name,
@@ -123,8 +124,11 @@ class addExperienceActivity : AppCompatActivity() {
 
             binding.btnSubmit.setOnClickListener {
                 if (img != null) {
-                    viewModel.postExperienceApi("30",binding.etPosition.text.toString(),binding.etDate.text.toString(),binding.etCompanyname.text.toString(),
-                        binding.etDescwork.text.toString())
+                    sharedPref.getString(Constant.PREF_ID)?.let { it1 ->
+                        viewModel.postExperienceApi(
+                            it1,binding.etPosition.text.toString(),binding.etDate.text.toString(),binding.etCompanyname.text.toString(),
+                            binding.etDescwork.text.toString())
+                    }
                 }
                 setResult(Activity.RESULT_OK)
                 finish()

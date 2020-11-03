@@ -52,7 +52,7 @@ class experienceProfileActivity : AppCompatActivity() {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    service?.getAllExperience("30")
+                    service?.getAllExperience(sharedPref.getString(Constant.PREF_ID))
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
