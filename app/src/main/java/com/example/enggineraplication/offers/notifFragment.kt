@@ -63,7 +63,7 @@ class notifFragment : Fragment() {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    val a = sharedPref.getString(Constant.PREF_ID)
+                    val a = sharedPref.getString(Constant.PREF_IDWORKERP)
                     service?.getAllNotif(a)
                 } catch (e: Throwable) {
                     e.printStackTrace()

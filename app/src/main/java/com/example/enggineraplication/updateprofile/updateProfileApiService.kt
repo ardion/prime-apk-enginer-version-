@@ -5,11 +5,13 @@ import okhttp3.RequestBody
 import retrofit2.http.Multipart
 import retrofit2.http.PUT
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface updateProfileApiService {
     @Multipart
-    @PUT("worker/66")
+    @PUT("worker/{id}")
     suspend fun updateprofileworker(
+        @Path("id") id: String?,
         @Part("id_user") id_user: RequestBody,
         @Part("jobdesk") jobdesk: RequestBody,
         @Part("domicile") domicile: RequestBody,

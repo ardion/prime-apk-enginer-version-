@@ -1,5 +1,6 @@
 package com.example.enggineraplication.profile
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import com.example.enggineraplication.addskill.addSkillActivity
 import com.example.enggineraplication.databinding.FragmentProfileBinding
 import com.example.enggineraplication.detailworker.detailworkerResponse
 import com.example.enggineraplication.detailworker.detailworkerapiservice
+import com.example.enggineraplication.experience.experienceAdabter
 import com.example.enggineraplication.home.homeaAdabter2
 import com.example.enggineraplication.login.ApiClient
 import com.example.enggineraplication.profile.skillprofile.skillAdabter
@@ -61,7 +63,8 @@ binding.updateprofile.setOnClickListener {
     startActivity(Intent(context, updateProfileActivity::class.java))
 }
         binding.addskill.setOnClickListener {
-            startActivity(Intent(context, addSkillActivity::class.java))
+//            startActivity(Intent(context, addSkillActivity::class.java))
+            startActivityForResult(Intent(context, addSkillActivity::class.java), addSkillActivity.ADD_WORD_REQUEST_CODE)
         }
         return binding.root
 
@@ -74,13 +77,13 @@ binding.updateprofile.setOnClickListener {
         val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
 
         coroutineScope.launch {
-//            binding.progressBar.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.VISIBLE
             Log.d("android1", "start : ${Thread.currentThread().name}")
 
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    service?.getAllWorker(sharedPref.getString(Constant.PREF_ID))
+                    service?.getAllWorker(sharedPref.getString(Constant.PREF_IDWORKERP))
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
@@ -104,6 +107,7 @@ binding.updateprofile.setOnClickListener {
             } else if (response is Throwable) {
                 Log.e("android1", response.message ?: "Error")
             }
+//            binding.progressBar.visibility = View.GONE
         }
 
 
@@ -122,7 +126,8 @@ binding.updateprofile.setOnClickListener {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    service?.getAllSkill(sharedPref.getString(Constant.PREF_ID))
+                    Log.d("idppppppp",sharedPref.getString(Constant.PREF_IDWORKERP).toString())
+                    service?.getAllSkill(sharedPref.getString(Constant.PREF_IDWORKERP))
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
@@ -146,9 +151,24 @@ binding.updateprofile.setOnClickListener {
             } else if (response is Throwable) {
                 Log.e("android1", response.message ?: "Error")
             }
+
+            binding.progressBar.visibility = View.GONE
         }
 
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == addSkillActivity.ADD_WORD_REQUEST_CODE ) {
+
+            binding.recyclerskill.adapter = skillAdabter()
+//        binding.recyclerskill.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+            binding.recyclerskill.layoutManager = GridLayoutManager(requireContext(),3)
+            useCoroutineToCallAPI()
+            skillAPI()
+
+        }
     }
 
 }

@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.enggineraplication.Constant
@@ -35,9 +36,9 @@ class postProfileActivity : AppCompatActivity() {
 
     companion object {
         //image pick code
-        private const val IMAGE_PICK_CODE = 1000;
+        private const val IMAGE_PICK_CODE = 2000;
         //Permission code
-        private const val PERMISSION_CODE = 1001;
+        private const val PERMISSION_CODE = 2001;
 
         const val idd_company = "anjay"
 
@@ -51,16 +52,18 @@ class postProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPref= PreferenceHelper(this)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_post_profile)
         viewModel = ViewModelProvider(this).get(postProfileViewModel::class.java)
+        viewModel.getSharedPreference(this)
         val service = ApiClient.getApiClient(this)?.create(postProfileApiService::class.java)
         if (service != null) {
             viewModel.setLoginService(service)
         }
 
+        Log.d("testttttttp",binding.etJobdeskp.text.toString())
 
-
-        binding.updateprofile.setOnClickListener {
+        binding.updatefoto.setOnClickListener {
             //check runtime permission
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                 if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
@@ -83,7 +86,7 @@ class postProfileActivity : AppCompatActivity() {
 
 
 binding.tvNamedetailp.text=sharedPref.getString(Constant.NAME_USER)
-//        Log.d("tesp", sharedPref.getString(Constant.PREF_IDCOMPANY).toString())
+        Log.d("idpc",sharedPref.getString(Constant.PREF_IDWORKERP).toString())
     }
 
 
@@ -138,17 +141,7 @@ binding.tvNamedetailp.text=sharedPref.getString(Constant.NAME_USER)
             val mediaTypeImg = "image/jpeg".toMediaType()
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
-            val a=sharedPref.getString(Constant.PREF_ID)
-            val id_user = createPartFromString("$a")
-            val jobdesk = createPartFromString(binding.etJobdeskp.text.toString())
-            Log.d("testtttttt",binding.etJobdeskp.text.toString())
-            val domicile = createPartFromString(binding.etDomicilep.text.toString())
-            val workplace = createPartFromString(binding.etWorkplacep.text.toString())
-            val job_status = createPartFromString(binding.etJobstatusp.text.toString())
-            val instagram = createPartFromString(binding.etInstagramp.text.toString())
-            val github = createPartFromString(binding.etGithubp.text.toString())
-            val gitlab = createPartFromString(binding.etGitlabp.text.toString())
-            val description_personal = createPartFromString(binding.etDescp.text.toString())
+
 
 
 
@@ -158,26 +151,34 @@ binding.tvNamedetailp.text=sharedPref.getString(Constant.NAME_USER)
                 )
             }
 
-            binding.btnsubmit.setOnClickListener {
+            binding.btnsubmitp.setOnClickListener {
                 if (img != null) {
-
+                    Log.d("testttttttp",binding.etJobdeskp.text.toString())
+                    val a=sharedPref.getString(Constant.PREF_ID)
+                    val id_user = createPartFromString("$a")
+                    val jobdesk = createPartFromString(binding.etJobdeskp.text.toString())
+                    Log.d("hmmm",binding.etJobdeskp.text.toString())
+                    val domicile = createPartFromString(binding.etDomicilep.text.toString())
+                    val workplace = createPartFromString(binding.etWorkplacep.text.toString())
+                    val job_status = createPartFromString(binding.etJobstatusp.text.toString())
+                    val instagram = createPartFromString(binding.etInstagramp.text.toString())
+                    val github = createPartFromString(binding.etGithubp.text.toString())
+                    val gitlab = createPartFromString(binding.etGitlabp.text.toString())
+                    val description_personal = createPartFromString(binding.etDescp.text.toString())
 
                     viewModel.postProfileApi(id_user, jobdesk, domicile, workplace, job_status, instagram, github, gitlab, description_personal, img)
 
                     sharedPref.put(Constant.pref_is_form, true)
 
 
-
-
-
-                    Log.d("tesprofile", sharedPref.getString(Constant.PREF_IDCOMPANY).toString())
-
-
-
+                    Log.d("idpsubmit",sharedPref.getString(Constant.PREF_IDWORKERP).toString())
 
                     val intent = Intent(this, parentActivity::class.java)
 
                     startActivity(intent)
+
+
+
                 }
 
             }

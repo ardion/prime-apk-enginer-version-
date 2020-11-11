@@ -11,9 +11,11 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.enggineraplication.Constant
 import com.example.enggineraplication.PreferenceHelper
@@ -73,7 +75,7 @@ class addExperienceActivity : AppCompatActivity() {
         }
 
 
-
+        subcribeLiveData()
     }
 
     private fun pickImageFromGallery() {
@@ -124,14 +126,14 @@ class addExperienceActivity : AppCompatActivity() {
 
             binding.btnSubmit.setOnClickListener {
                 if (img != null) {
-                    sharedPref.getString(Constant.PREF_ID)?.let { it1 ->
+                    sharedPref.getString(Constant.PREF_IDWORKERP)?.let { it1 ->
                         viewModel.postExperienceApi(
                             it1,binding.etPosition.text.toString(),binding.etDate.text.toString(),binding.etCompanyname.text.toString(),
                             binding.etDescwork.text.toString())
                     }
                 }
-                setResult(Activity.RESULT_OK)
-                finish()
+//                setResult(Activity.RESULT_OK)
+//                finish()
             }
         }
 
@@ -160,6 +162,20 @@ class addExperienceActivity : AppCompatActivity() {
         val mediaType = "multipart/form-data".toMediaType()
         return json
             .toRequestBody(mediaType)
+    }
+
+    fun subcribeLiveData(){
+        viewModel.isLoadingProgressBarLiveData.observe(this , Observer {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+                setResult(RESULT_OK)
+                finish()
+            }
+        })
+
+
     }
 
 }

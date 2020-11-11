@@ -132,17 +132,7 @@ class updateProfileActivity : AppCompatActivity() {
             val mediaTypeImg = "image/jpeg".toMediaType()
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
-            val a=sharedPref.getString(Constant.PREF_ID)
-            val id_user = createPartFromString("$a")
-            val jobdesk = createPartFromString(binding.etJobdesku.text.toString())
-            val domicile = createPartFromString(binding.etDomicileu.text.toString())
-            Log.d("jobdeskcoba",binding.etDomicileu.text.toString())
-            val workplace = createPartFromString(binding.etWorkplaceu.text.toString())
-            val job_status = createPartFromString(binding.etJobstatusu.text.toString())
-            val instagram = createPartFromString(binding.etInstagramu.text.toString())
-            val github = createPartFromString(binding.etGithubu.text.toString())
-            val gitlab = createPartFromString(binding.etGitlabu.text.toString())
-            val description_personal = createPartFromString(binding.etDescu.text.toString())
+
 
 
 
@@ -154,11 +144,25 @@ class updateProfileActivity : AppCompatActivity() {
 
             binding.btnsubmit.setOnClickListener {
                 if (img != null) {
+                    val a=sharedPref.getString(Constant.PREF_ID)
+                    val id_user = createPartFromString("$a")
+                    val jobdesk = createPartFromString(binding.etJobdesku.text.toString())
+                    val domicile = createPartFromString(binding.etDomicileu.text.toString())
+                    Log.d("jobdeskcoba",binding.etDomicileu.text.toString())
+                    val workplace = createPartFromString(binding.etWorkplaceu.text.toString())
+                    val job_status = createPartFromString(binding.etJobstatusu.text.toString())
+                    val instagram = createPartFromString(binding.etInstagramu.text.toString())
+                    val github = createPartFromString(binding.etGithubu.text.toString())
+                    val gitlab = createPartFromString(binding.etGitlabu.text.toString())
+                    val description_personal = createPartFromString(binding.etDescu.text.toString())
 
 
-                    viewModel.updateprofileworker(id_user, jobdesk, domicile, workplace, job_status, instagram, github, gitlab, description_personal, img)
+                    sharedPref.getString(Constant.PREF_IDWORKERP)?.let { it1 ->
+                        viewModel.updateprofileworker(
+                            it1, id_user, jobdesk, domicile, workplace, job_status, instagram, github, gitlab, description_personal, img)
+                    }
 
-                    sharedPref.put(Constant.pref_is_form, true)
+
 
 
 

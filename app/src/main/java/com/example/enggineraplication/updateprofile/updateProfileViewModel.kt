@@ -26,6 +26,7 @@ class updateProfileViewModel : ViewModel(), CoroutineScope {
     }
 
     fun updateprofileworker(
+        id:String,
         id_user: RequestBody,
         jobdesk: RequestBody,
         domicile: RequestBody,
@@ -45,7 +46,7 @@ class updateProfileViewModel : ViewModel(), CoroutineScope {
 
 
                     service?.updateprofileworker(
-                        id_user, jobdesk, domicile, workplace, job_status, instagram, github, gitlab, description_personal, image
+                        id, id_user, jobdesk, domicile, workplace, job_status, instagram, github, gitlab, description_personal, image
                     )
                 } catch (e: Throwable) {
                     e.printStackTrace()

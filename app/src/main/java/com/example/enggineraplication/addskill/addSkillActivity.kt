@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 
 import androidx.databinding.DataBindingUtil
@@ -30,6 +31,11 @@ class addSkillActivity : AppCompatActivity() {
     private lateinit var viewModel: AddSkillViewModel
     lateinit var sharedPref: PreferenceHelper
 
+    companion object {
+
+        const val ADD_WORD_REQUEST_CODE = 9013;
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_skill)
@@ -43,23 +49,36 @@ class addSkillActivity : AppCompatActivity() {
         }
 
         binding.btnsubmit.setOnClickListener {
-            sharedPref.getString(Constant.PREF_ID)?.let { it1 -> viewModel.postSKillApi(it1, binding.etSkilladd.text.toString()) }
-            startActivity(Intent(this,parentActivity::class.java))
+            sharedPref.getString(Constant.PREF_IDWORKERP)?.let { it1 -> viewModel.postSKillApi(it1, binding.etSkilladd.text.toString()) }
         }
 
-        subscribeLiveData()
+        subcribeLiveData()
     }
 
-    private fun subscribeLiveData() {
-        viewModel.isLoginLiveData.observe(this, Observer {
-            Log.d("android1", "$it")
+//    private fun subscribeLiveData() {
+//        viewModel.isLoginLiveData.observe(this, Observer {
+//            Log.d("android1", "$it")
+//            if (it) {
+//                Toast.makeText(this, "Add Succcess", Toast.LENGTH_SHORT).show()
+//                finish()
+//            } else {
+//                Toast.makeText(this, "Add Failed!", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//
+//    }
+
+    fun subcribeLiveData(){
+        viewModel.isLoginLiveData.observe(this , Observer {
             if (it) {
-                Toast.makeText(this, "Add Succcess", Toast.LENGTH_SHORT).show()
-                finish()
+                binding.progressBar.visibility = View.VISIBLE
             } else {
-                Toast.makeText(this, "Add Failed!", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.GONE
+                setResult(RESULT_OK)
+                finish()
             }
         })
+
 
     }
 }

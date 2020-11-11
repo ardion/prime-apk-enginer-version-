@@ -1,5 +1,6 @@
 package com.example.enggineraplication.profile
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,7 +23,7 @@ import kotlinx.coroutines.*
 
 class portoProfileActivity : AppCompatActivity() {
     lateinit var binding: ActivityPortoProfileBinding
-    private lateinit var RecycleWorker: portoAdabter
+//    private lateinit var RecycleWorker: portoAdabter
     lateinit var sharedPref: PreferenceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,12 +31,12 @@ class portoProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_porto_profile)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_porto_profile)
         sharedPref= PreferenceHelper(this)
-
+        useCoroutineToCallAPI()
         binding.recyclerView.adapter = portoAdabter()
         binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        useCoroutineToCallAPI()
+
         binding.btnAddPorto.setOnClickListener {
-            startActivity(Intent(this, addPortoActivity::class.java))
+            startActivityForResult(Intent(this, addPortoActivity::class.java), addPortoActivity.ADD_WORD_REQUEST_CODE)
         }
 
     }
@@ -53,7 +54,7 @@ class portoProfileActivity : AppCompatActivity() {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    service?.getAllPorto(sharedPref.getString(Constant.PREF_ID))
+                    service?.getAllPorto(sharedPref.getString(Constant.PREF_IDWORKERP))
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
@@ -81,6 +82,16 @@ class portoProfileActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == addPortoActivity.ADD_WORD_REQUEST_CODE ) {
+            useCoroutineToCallAPI()
+            binding.recyclerView.adapter = portoAdabter()
+            binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+
+        }
     }
 
 }

@@ -18,6 +18,7 @@ class Constant {
         const val PREF_IDWORKER = "PREF_IDWORKER"
         const val NAME_USER = "NAME_USER"
         const val EMAIL = "EMAIL"
+        const val PREF_IDWORKERP = "PREF_IDWORKERP"
 
     }
 }

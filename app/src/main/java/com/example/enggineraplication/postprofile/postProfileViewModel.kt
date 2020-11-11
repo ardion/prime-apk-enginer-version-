@@ -1,18 +1,25 @@
 package com.example.enggineraplication.postprofile
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
+import com.example.enggineraplication.Constant
+import com.example.enggineraplication.PreferenceHelper
+import com.example.enggineraplication.parentActivity
 import kotlinx.coroutines.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Part
+import java.math.MathContext
 import kotlin.coroutines.CoroutineContext
 
 class postProfileViewModel : ViewModel(), CoroutineScope {
 
     private lateinit var service: postProfileApiService
 
-    //    lateinit var sharedPref: PreferenceHelper
+        lateinit var sharedPref: PreferenceHelper
 //    sharedPref= PreferenceHelper(this)
 //    val dataIDcompany = MutableLiveData<String>()
 
@@ -24,6 +31,11 @@ class postProfileViewModel : ViewModel(), CoroutineScope {
     fun setLoginService(service: postProfileApiService) {
         this.service = service
     }
+
+    fun getSharedPreference(mContex:Context){
+        sharedPref=PreferenceHelper(mContex)
+    }
+
 
     fun postProfileApi(
         id_user: RequestBody,
@@ -53,6 +65,9 @@ class postProfileViewModel : ViewModel(), CoroutineScope {
             }
 
             if (response is postProfileResponse) {
+                sharedPref.put(Constant.PREF_IDWORKERP, response.data.id.toString())
+
+
 //                var list = response.data.id
 //                Log.d("responid",response.data.id.toString())
 //                dataIDcompany.value = list

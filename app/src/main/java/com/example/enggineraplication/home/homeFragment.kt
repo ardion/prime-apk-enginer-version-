@@ -43,6 +43,7 @@ class homeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater)
         sharedPref = context?.let { PreferenceHelper(it) }!!
+        Log.d("idppppppphome",sharedPref.getString(Constant.PREF_IDWORKERP).toString())
         binding.text2.text=sharedPref.getString(Constant.NAME_USER)
 //        recyclerViewAndroid= homeaAdabter()
 //        recyclerViewWeb=homeaAdabter2()

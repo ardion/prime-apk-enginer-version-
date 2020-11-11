@@ -140,6 +140,7 @@ class loginActivity : BaseActivity() {
                     moveIntent()
                 }else{
                     Log.d("testlogin2",response.data?.id_worker.toString())
+                    sharedPref.put(Constant.PREF_IDWORKERP, response.data?.id_worker.toString())
                     sharedPref.put(Constant.pref_is_form, true)
                     moveIntent()
                 }

@@ -1,5 +1,7 @@
 package com.example.enggineraplication.profile
 
+import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.enggineraplication.portofolio.portofolioApiService
 import kotlinx.coroutines.*
@@ -10,6 +12,10 @@ import kotlin.coroutines.CoroutineContext
 class AddPortoViewModel : ViewModel(), CoroutineScope {
 
     private lateinit var service: portofolioApiService
+    val isLoadingProgressBarLiveData = MutableLiveData<Boolean>()
+
+
+
 
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.Main
@@ -19,8 +25,10 @@ class AddPortoViewModel : ViewModel(), CoroutineScope {
         this.service = service
     }
 
+
     fun postPortoApi(id_worker: RequestBody, name_aplication: RequestBody, link_repository: RequestBody,type_repository: RequestBody, type_portofolio: RequestBody, image: MultipartBody.Part) {
         launch {
+            isLoadingProgressBarLiveData.value=true
 
             val response = withContext(Dispatchers.IO) {
                 try {
@@ -32,7 +40,11 @@ class AddPortoViewModel : ViewModel(), CoroutineScope {
 
             if (response is PortoAddResponse) {
                 // Action Success
+
             }
+            isLoadingProgressBarLiveData.value=false
+
+
         }
     }
 }

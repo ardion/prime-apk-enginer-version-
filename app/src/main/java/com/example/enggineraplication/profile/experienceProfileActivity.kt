@@ -1,5 +1,6 @@
 package com.example.enggineraplication.profile
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.example.enggineraplication.experience.experienceApiService
 import com.example.enggineraplication.experience.experienceModel
 import com.example.enggineraplication.experience.experienceresponse
 import com.example.enggineraplication.login.ApiClient
+import com.example.enggineraplication.portofolio.portoAdabter
 import kotlinx.coroutines.*
 
 class experienceProfileActivity : AppCompatActivity() {
@@ -34,7 +36,8 @@ class experienceProfileActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         useCoroutineToCallAPI()
         binding.btnAddExperience.setOnClickListener {
-            startActivity(Intent(this, addExperienceActivity::class.java))
+//            startActivity(Intent(this, addExperienceActivity::class.java))
+            startActivityForResult(Intent(this, addExperienceActivity::class.java), addExperienceActivity.ADD_WORD_REQUEST_CODE)
         }
 
     }
@@ -52,7 +55,7 @@ class experienceProfileActivity : AppCompatActivity() {
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    service?.getAllExperience(sharedPref.getString(Constant.PREF_ID))
+                    service?.getAllExperience(sharedPref.getString(Constant.PREF_IDWORKERP))
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
@@ -79,6 +82,16 @@ class experienceProfileActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == addExperienceActivity.ADD_WORD_REQUEST_CODE ) {
+            useCoroutineToCallAPI()
+            binding.recyclerView.adapter = experienceAdabter()
+            binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+
+        }
     }
 
 }

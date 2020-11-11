@@ -23,6 +23,7 @@ class AddSkillViewModel : ViewModel(), CoroutineScope {
 
     fun postSKillApi(id_worker: String, skill: String) {
         launch {
+            isLoginLiveData.value = true
 
             val response = withContext(Dispatchers.IO) {
                 try {
@@ -34,7 +35,7 @@ class AddSkillViewModel : ViewModel(), CoroutineScope {
 
             if (response is skillAddResponse) {
                 // Action Success
-                isLoginLiveData.value = true
+
             }
             isLoginLiveData.value = false
         }

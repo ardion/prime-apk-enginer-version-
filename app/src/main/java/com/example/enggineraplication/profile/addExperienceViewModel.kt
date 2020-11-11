@@ -1,5 +1,6 @@
 package com.example.enggineraplication.profile
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.enggineraplication.experience.experienceApiService
 import kotlinx.coroutines.*
@@ -10,6 +11,7 @@ import kotlin.coroutines.CoroutineContext
 class AddExperienceViewModel : ViewModel(), CoroutineScope {
 
     private lateinit var service: experienceApiService
+    val isLoadingProgressBarLiveData = MutableLiveData<Boolean>()
 
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.Main
@@ -22,6 +24,7 @@ class AddExperienceViewModel : ViewModel(), CoroutineScope {
 
     fun postExperienceApi(id_worker: String, position: String, company_name: String, date: String,description_work:String) {
         launch {
+            isLoadingProgressBarLiveData.value=true
 
             val response = withContext(Dispatchers.IO) {
                 try {
@@ -34,6 +37,7 @@ class AddExperienceViewModel : ViewModel(), CoroutineScope {
             if (response is experienceAddResponse) {
                 // Action Success
             }
+            isLoadingProgressBarLiveData.value=false
         }
     }
 }
