@@ -12,14 +12,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.enggineraplication.Constant
 import com.example.enggineraplication.PreferenceHelper
 import com.example.enggineraplication.R
-import com.example.enggineraplication.databinding.ActivityPostProfileBinding
+
 import com.example.enggineraplication.databinding.ActivityUpdateProfileBinding
 import com.example.enggineraplication.login.ApiClient
 import com.example.enggineraplication.parentActivity
@@ -42,7 +44,7 @@ class updateProfileActivity : AppCompatActivity() {
         //Permission code
         private const val PERMISSION_CODE = 1001;
 
-        const val idd_company = "anjay"
+        const val ADD_WORD_REQUEST_CODE = 9013;
 
 
 
@@ -85,7 +87,7 @@ class updateProfileActivity : AppCompatActivity() {
         }
 
 
-
+        subcribeLiveData()
 //        Log.d("tesp", sharedPref.getString(Constant.PREF_IDCOMPANY).toString())
     }
 
@@ -173,10 +175,10 @@ class updateProfileActivity : AppCompatActivity() {
 
 
 
-
-                    val intent = Intent(this, parentActivity::class.java)
-
-                    startActivity(intent)
+//
+//                    val intent = Intent(this, parentActivity::class.java)
+//
+//                    startActivity(intent)
                 }
 
             }
@@ -207,6 +209,20 @@ class updateProfileActivity : AppCompatActivity() {
         val mediaType = "multipart/form-data".toMediaType()
         return json
             .toRequestBody(mediaType)
+    }
+
+    fun subcribeLiveData(){
+        viewModel.isLoadingProgressBarLiveData.observe(this , Observer {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+                setResult(RESULT_OK)
+                finish()
+            }
+        })
+
+
     }
 
 }

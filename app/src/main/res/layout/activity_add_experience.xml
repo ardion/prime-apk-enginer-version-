@@ -150,13 +150,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="90dp"
                 android:background="@drawable/ic_submitexperporto"
                 android:fontFamily="sans-serif-black"
                 android:text="Add experience"
                 android:textColor="#FBB017" />
 
         </LinearLayout>
+
 
     </ScrollView>
 

@@ -132,8 +132,7 @@ class addExperienceActivity : AppCompatActivity() {
                             binding.etDescwork.text.toString())
                     }
                 }
-//                setResult(Activity.RESULT_OK)
-//                finish()
+
             }
         }
 

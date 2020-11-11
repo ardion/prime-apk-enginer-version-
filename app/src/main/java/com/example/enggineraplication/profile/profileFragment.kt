@@ -60,7 +60,8 @@ class profileFragment : Fragment() {
             startActivity(Intent(context, experienceProfileActivity::class.java))
         }
 binding.updateprofile.setOnClickListener {
-    startActivity(Intent(context, updateProfileActivity::class.java))
+//    startActivity(Intent(context, updateProfileActivity::class.java))
+    startActivityForResult(Intent(context, updateProfileActivity::class.java), updateProfileActivity.ADD_WORD_REQUEST_CODE)
 }
         binding.addskill.setOnClickListener {
 //            startActivity(Intent(context, addSkillActivity::class.java))
@@ -161,6 +162,16 @@ binding.updateprofile.setOnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == addSkillActivity.ADD_WORD_REQUEST_CODE ) {
+
+            binding.recyclerskill.adapter = skillAdabter()
+//        binding.recyclerskill.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+            binding.recyclerskill.layoutManager = GridLayoutManager(requireContext(),3)
+            useCoroutineToCallAPI()
+            skillAPI()
+
+        }
+
+        if (resultCode == Activity.RESULT_OK && requestCode == updateProfileActivity.ADD_WORD_REQUEST_CODE ) {
 
             binding.recyclerskill.adapter = skillAdabter()
 //        binding.recyclerskill.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)

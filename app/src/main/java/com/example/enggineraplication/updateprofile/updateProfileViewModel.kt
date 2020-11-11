@@ -1,5 +1,6 @@
 package com.example.enggineraplication.updateprofile
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.enggineraplication.postprofile.postProfileApiService
 import com.example.enggineraplication.postprofile.postProfileResponse
@@ -11,6 +12,7 @@ import kotlin.coroutines.CoroutineContext
 class updateProfileViewModel : ViewModel(), CoroutineScope {
 
     private lateinit var service: updateProfileApiService
+    val isLoadingProgressBarLiveData = MutableLiveData<Boolean>()
 
     //    lateinit var sharedPref: PreferenceHelper
 //    sharedPref= PreferenceHelper(this)
@@ -40,6 +42,7 @@ class updateProfileViewModel : ViewModel(), CoroutineScope {
     ) {
 
         launch {
+            isLoadingProgressBarLiveData.value=true
 
             val response = withContext(Dispatchers.IO) {
                 try {
@@ -58,6 +61,7 @@ class updateProfileViewModel : ViewModel(), CoroutineScope {
 //                Log.d("responid",response.data.id.toString())
 //                dataIDcompany.value = list
             }
+            isLoadingProgressBarLiveData.value=false
 
         }
 
