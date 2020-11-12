@@ -1,5 +1,6 @@
 package com.example.enggineraplication.transaction
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,9 +18,15 @@ import kotlinx.coroutines.*
 
 class detailOffersActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailOffersBinding
+
+
+    companion object {
+
+        const val ADD_WORD_REQUEST_CODE = 9013;
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_detail_offers)
         binding = DataBindingUtil.setContentView(this,
             R.layout.activity_detail_offers
         )
@@ -33,12 +40,11 @@ class detailOffersActivity : AppCompatActivity() {
 
         binding.acc.setOnClickListener {
             patch("accept")
-            onBackPressed()
         }
 
         binding.Reject.setOnClickListener {
             patch("reject")
-            onBackPressed()
+
         }
 
 
@@ -64,21 +70,21 @@ class detailOffersActivity : AppCompatActivity() {
                     Log.e("onError", "onError : " + e.message);
                     e.printStackTrace()
                     withContext(Dispatchers.Main){
-//                        Toast.makeText(applicationContext,"invalid username/password", Toast.LENGTH_SHORT).show()
-//                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(applicationContext,"failed process", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
             Log.d("test",response.toString())
             if (response is transactionResponse) {
 
-//                } else {
-//                    setErrorDialog("Error Login!", response.message)
-//                }
 
             }
             binding.progressBar.visibility = View.GONE
+            setResult(Activity.RESULT_OK)
+                finish()
         }
     }
+
+
 
 }

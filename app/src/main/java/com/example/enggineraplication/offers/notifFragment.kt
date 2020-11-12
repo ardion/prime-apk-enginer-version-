@@ -1,5 +1,6 @@
 package com.example.enggineraplication.offers
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,8 @@ import com.example.enggineraplication.PreferenceHelper
 import com.example.enggineraplication.databinding.FragmentNotifBinding
 import com.example.enggineraplication.transaction.detailOffersActivity
 import com.example.enggineraplication.login.ApiClient
+import com.example.enggineraplication.portofolio.portoAdabter
+import com.example.enggineraplication.profile.addPortoActivity
 import kotlinx.coroutines.*
 
 class notifFragment : Fragment() {
@@ -123,7 +126,7 @@ class notifFragment : Fragment() {
                 job: String,
                 status: String
             ) {
-//                Toast.makeText(activity, id, Toast.LENGTH_SHORT).show()
+
                 Toast.makeText(activity, companyname, Toast.LENGTH_SHORT).show()
                 val intent = Intent(activity as AppCompatActivity, detailOffersActivity::class.java)
                 intent.putExtra(orderworker, id)
@@ -133,20 +136,25 @@ class notifFragment : Fragment() {
                 intent.putExtra(massagei, massage)
                 intent.putExtra(jobi, job)
                 intent.putExtra(statusi, status)
-                startActivity(intent)
-
-//                const val namecompany = "namecompany"
-//                const val nameproject = "nameproject"
-//                const val price = "price"
-//                const val massage = "massage"
-//                const val  job = "job"
-//                const val  status = "status"
+//                startActivity(intent)
+                startActivityForResult(intent, detailOffersActivity.ADD_WORD_REQUEST_CODE)
             }
         })
         binding.recyclerView.adapter = recyclerView
         binding.recyclerView.layoutManager =
             LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == detailOffersActivity.ADD_WORD_REQUEST_CODE ) {
+            binding.recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            useCoroutineToCallAPI()
+            setUpRecyclerView()
+
+        }
     }
 
 }

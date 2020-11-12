@@ -36,6 +36,7 @@ class notifAdabter(val items: ArrayList<notifModel>, val listener: notifAdabter.
         Picasso.get().load("http://35.172.182.122:8080/uploads/"+item.image).into(holder.binding.image)
         holder.binding.tvCompayname.text = item.company_name
         holder.binding.tvNameproject.text = item.name_project
+        holder.binding.tvStatusproject.text = item.status
         holder.binding.containerproject.setOnClickListener {
             listener.OnClick(item.order_worker,item.company_name,item.name_project, item.message, item.price, item.project_job, item.status)
         }

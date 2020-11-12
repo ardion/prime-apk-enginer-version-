@@ -36,15 +36,65 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/tv_skill"
+            android:id="@+id/tv_skill1"
             android:text="skill"
+            android:layout_marginTop="5dp"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:gravity="center"
+            android:background="@drawable/ic_skill"
+            android:layout_marginLeft="20dp"
+            android:textColor="#FDFCFB"
+            app:layout_constraintTop_toBottomOf="@id/tv_domicile"
+            app:layout_constraintLeft_toRightOf="@id/image"/>
+
+        <TextView
+            android:id="@+id/tv_skill2"
+            android:text="skill"
+            android:layout_marginTop="5dp"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:gravity="center"
+            android:background="@drawable/ic_skill"
+            android:layout_marginLeft="5dp"
+            android:textColor="#F8F7F6"
+            app:layout_constraintTop_toBottomOf="@id/tv_domicile"
+            app:layout_constraintLeft_toRightOf="@id/tv_skill1"/>
+        <TextView
+            android:id="@+id/tv_skill3"
+            android:text="skill"
+            android:layout_marginTop="5dp"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:gravity="center"
+            android:background="@drawable/ic_skill"
+            android:layout_marginLeft="5dp"
+            android:textColor="#F8F7F6"
+            app:layout_constraintTop_toBottomOf="@id/tv_domicile"
+            app:layout_constraintLeft_toRightOf="@id/tv_skill2"/>
+        <TextView
+            android:id="@+id/tv_min"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:textColor="#FBB017"
+            android:layout_marginLeft="5dp"
+            android:textColor="#9EA0A5"
             app:layout_constraintTop_toBottomOf="@id/tv_domicile"
-            app:layout_constraintLeft_toRightOf="@id/image"/>
+            app:layout_constraintLeft_toRightOf="@id/tv_skill3"/>
+
+        <TextView
+            android:id="@+id/tv_plus"
+            android:text="+"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9EA0A5"
+            app:layout_constraintTop_toBottomOf="@id/tv_domicile"
+            app:layout_constraintLeft_toRightOf="@id/tv_min"/>
+
 <de.hdodenhof.circleimageview.CircleImageView
     android:id="@+id/image"
     android:layout_width="100dp"
