@@ -25,16 +25,14 @@ class homeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
     lateinit var sharedPref: PreferenceHelper
-    private lateinit var recyclerViewAndroid : homeaAdabter
-    private lateinit var recyclerViewWeb : homeaAdabter2
+    private lateinit var recyclerViewAndroid: homeaAdabter
+    private lateinit var recyclerViewWeb: homeaAdabter2
 
     private lateinit var coroutineScope: CoroutineScope
 
     companion object {
         const val ID_WORKER = "anjay"
     }
-
-//    private lateinit var RecycleWorker: homeaAdabter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,40 +41,28 @@ class homeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater)
         sharedPref = context?.let { PreferenceHelper(it) }!!
-        Log.d("idppppppphome",sharedPref.getString(Constant.PREF_IDWORKERP).toString())
-        binding.text2.text=sharedPref.getString(Constant.NAME_USER)
-//        recyclerViewAndroid= homeaAdabter()
-//        recyclerViewWeb=homeaAdabter2()
-//        binding.recyclerView.adapter = recyclerViewAndroid
+        Log.d("idppppppphome", sharedPref.getString(Constant.PREF_IDWORKERP).toString())
+        binding.text2.text = sharedPref.getString(Constant.NAME_USER)
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-
-//        binding.recyclerView2.adapter = recyclerViewWeb
         binding.recyclerView2.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-
-        binding.icon.setOnClickListener{
+        binding.icon.setOnClickListener {
             startActivity(Intent(context, notificationActivity::class.java))
         }
 
 
         useCoroutineToCallAPI()
         useCoroutineToCallAPI2()
-
-
         setUpRecyclerView()
-
         return binding.root
 
     }
 
 
     private fun useCoroutineToCallAPI2() {
-//        binding.progressBar.visibility = View.VISIBLE
         val service2 =
             context?.let { ApiClient.getApiClient(it)?.create(homeapiservice2::class.java) }
-
-
         val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
 
         coroutineScope.launch {
@@ -118,10 +104,8 @@ class homeFragment : Fragment() {
     }
 
 
-
-
     private fun useCoroutineToCallAPI() {
-//        binding.progressBar.visibility = View.VISIBLE
+
         val service =
             context?.let { ApiClient.getApiClient(it)?.create(homeapiservice::class.java) }
 
@@ -168,16 +152,18 @@ class homeFragment : Fragment() {
 
 
     private fun setUpRecyclerView() {
-        recyclerViewAndroid = homeaAdabter(arrayListOf(), object : homeaAdabter.OnClickViewListener {
-            override fun OnClick(id: String) {
-                Toast.makeText(activity, id, Toast.LENGTH_SHORT).show()
-                sharedPref.put(Constant.PREF_IDWORKER, id)
-                val intent = Intent(activity as AppCompatActivity, detailWorkerActivity::class.java)
-                intent.putExtra(ID_WORKER, id)
-                startActivity(intent)
+        recyclerViewAndroid =
+            homeaAdabter(arrayListOf(), object : homeaAdabter.OnClickViewListener {
+                override fun OnClick(id: String) {
+                    Toast.makeText(activity, id, Toast.LENGTH_SHORT).show()
+                    sharedPref.put(Constant.PREF_IDWORKER, id)
+                    val intent =
+                        Intent(activity as AppCompatActivity, detailWorkerActivity::class.java)
+                    intent.putExtra(ID_WORKER, id)
+                    startActivity(intent)
 
-            }
-        })
+                }
+            })
         binding.recyclerView.adapter = recyclerViewAndroid
         binding.recyclerView.layoutManager =
             LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
@@ -195,9 +181,5 @@ class homeFragment : Fragment() {
         binding.recyclerView2.layoutManager =
             LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
 
-
     }
-
-
-
 }

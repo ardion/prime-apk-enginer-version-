@@ -22,22 +22,33 @@ class AddExperienceViewModel : ViewModel(), CoroutineScope {
     }
 
 
-    fun postExperienceApi(id_worker: String, position: String, company_name: String, date: String,description_work:String) {
+    fun postExperienceApi(
+        id_worker: String,
+        position: String,
+        company_name: String,
+        date: String,
+        description_work: String
+    ) {
         launch {
-            isLoadingProgressBarLiveData.value=true
+            isLoadingProgressBarLiveData.value = true
 
             val response = withContext(Dispatchers.IO) {
                 try {
-                    service?.postexperience(id_worker, position,  date, company_name, description_work)
+                    service?.postexperience(
+                        id_worker,
+                        position,
+                        date,
+                        company_name,
+                        description_work
+                    )
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }
             }
 
             if (response is experienceAddResponse) {
-                // Action Success
             }
-            isLoadingProgressBarLiveData.value=false
+            isLoadingProgressBarLiveData.value = false
         }
     }
 }

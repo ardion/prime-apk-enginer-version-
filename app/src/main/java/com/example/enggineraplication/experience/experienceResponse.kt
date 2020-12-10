@@ -10,8 +10,6 @@ data class experienceresponse (val success: Boolean, val message: String?, val d
         @SerializedName("company_name") val company_name: String?,
         @SerializedName("description_work") val description_work: String?,
         @SerializedName("date") val date: String?
-
-
     )
 
 }

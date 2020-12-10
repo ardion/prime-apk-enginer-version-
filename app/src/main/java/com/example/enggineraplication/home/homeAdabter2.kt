@@ -63,8 +63,6 @@ class homeaAdabter2(val items: ArrayList<workerModel2>,val listener: homeaAdabte
     }
 
     class homeHolder2( val binding: ItemWorkerBinding) : RecyclerView.ViewHolder(binding.root)
-
-
     interface OnClickViewListener{
         fun OnClick(id:String)
     }

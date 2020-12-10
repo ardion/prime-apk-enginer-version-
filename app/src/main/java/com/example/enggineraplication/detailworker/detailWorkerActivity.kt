@@ -26,12 +26,8 @@ class detailWorkerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail_worker)
-
         binding.recyclerskilld.adapter = skillAdabter()
-//        binding.recyclerskill.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        binding.recyclerskilld.layoutManager = GridLayoutManager(this,3)
-
-
+        binding.recyclerskilld.layoutManager = GridLayoutManager(this, 3)
         useCoroutineToCallAPI()
         binding.portofolio.setOnClickListener {
             val intent = Intent(this, portofolioActivity::class.java)
@@ -46,21 +42,16 @@ class detailWorkerActivity : AppCompatActivity() {
         skillAPI()
 
 
-
     }
 
 
     private fun useCoroutineToCallAPI() {
-//    val retrofit = Retrofit.Builder()
-//        .baseUrl("http://dummy.restapiexample.com/")
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-        val service= ApiClient.getApiClient(this)?.create(detailworkerapiservice::class.java)
+
+        val service = ApiClient.getApiClient(this)?.create(detailworkerapiservice::class.java)
 
         val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
 
         coroutineScope.launch {
-//            binding.progressBar.visibility = View.VISIBLE
             Log.d("android1", "start : ${Thread.currentThread().name}")
 
             val response = withContext(Dispatchers.IO) {
@@ -74,19 +65,16 @@ class detailWorkerActivity : AppCompatActivity() {
 
             if (response is detailworkerResponse) {
                 Log.d("android1", response.data.toString())
-                binding.tvNamedetail.text=response.data?.name
-                binding.etJobdesk.text=response.data?.jobdesk
-                binding.etDomicile.text=response.data?. domicile
-                binding.etDescworker.text=response.data?.description_personal
-                binding.etInstagram.text=response.data?.instagram
-                binding.etGithub.text=response.data?.github
-                binding.etGitlab.text=response.data?.gitlab
+                binding.tvNamedetail.text = response.data?.name
+                binding.etJobdesk.text = response.data?.jobdesk
+                binding.etDomicile.text = response.data?.domicile
+                binding.etDescworker.text = response.data?.description_personal
+                binding.etInstagram.text = response.data?.instagram
+                binding.etGithub.text = response.data?.github
+                binding.etGitlab.text = response.data?.gitlab
 
-                Picasso.get().load("http://35.172.182.122:8080/uploads/"+response.data?.image).into(binding.imageView)
-
-
-
-
+                Picasso.get().load("http://35.172.182.122:8080/uploads/" + response.data?.image)
+                    .into(binding.imageView)
             } else if (response is Throwable) {
                 Log.e("android1", response.message ?: "Error")
             }
@@ -97,12 +85,11 @@ class detailWorkerActivity : AppCompatActivity() {
 
     private fun skillAPI() {
 
-        val service=  ApiClient.getApiClient(this)?.create(skillApiService::class.java)
+        val service = ApiClient.getApiClient(this)?.create(skillApiService::class.java)
 
         val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
 
         coroutineScope.launch {
-//            binding.progressBar.visibility = View.VISIBLE
             Log.d("android1", "start : ${Thread.currentThread().name}")
 
             val response = withContext(Dispatchers.IO) {
@@ -116,8 +103,7 @@ class detailWorkerActivity : AppCompatActivity() {
 
             if (response is skillResponse) {
                 Log.d("androskil", response.data.toString())
-                Toast.makeText(this@detailWorkerActivity,"usecorotine", Toast.LENGTH_SHORT).show()
-//                Log.d("android1", response.data.toString())
+                Toast.makeText(this@detailWorkerActivity, "usecorotine", Toast.LENGTH_SHORT).show()
                 val list = response.data?.map {
                     skillModel(
                         it.skill.orEmpty(),
@@ -132,8 +118,5 @@ class detailWorkerActivity : AppCompatActivity() {
                 Log.e("android1", response.message ?: "Error")
             }
         }
-
-
     }
-
 }

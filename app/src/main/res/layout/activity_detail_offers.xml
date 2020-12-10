@@ -6,168 +6,168 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarslide"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@drawable/ic_group_925"
-        android:theme="@style/toolbar"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-        <LinearLayout
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarslide"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@drawable/ic_group_925"
+            android:theme="@style/toolbar"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Prime"
-                android:textSize="30dp"
-                android:textColor="#FAF9F8"
-                android:fontFamily="cursive"
-                android:gravity="center"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="cursive"
+                    android:gravity="center"
+                    android:text="Prime"
+                    android:textColor="#FAF9F8"
+                    android:textSize="30dp" />
 
 
-        </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_view"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="60dp"
-                android:padding="3dp"
-                android:src="@drawable/coba1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="60dp"
+                    android:padding="3dp"
+                    android:src="@drawable/coba1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_nameproject"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Name Project"
-                android:textColor="#1F2A36"
-                android:textSize="22dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_view" />
+                <TextView
+                    android:id="@+id/tv_nameproject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Name Project"
+                    android:textColor="#1F2A36"
+                    android:textSize="22dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_view" />
 
-            <TextView
-                android:id="@+id/et_companyname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:text="Company_name"
-                android:textColor="#1F2A36"
-                android:textSize="14dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_nameproject" />
+                <TextView
+                    android:id="@+id/et_companyname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Company_name"
+                    android:textColor="#1F2A36"
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_nameproject" />
 
-            <ImageView
-                android:id="@+id/pin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/ic_domicile"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/et_price"
-                app:layout_constraintTop_toBottomOf="@id/et_companyname" />
+                <ImageView
+                    android:id="@+id/pin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_domicile"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/et_price"
+                    app:layout_constraintTop_toBottomOf="@id/et_companyname" />
 
-            <TextView
-                android:id="@+id/et_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="Price"
-                android:textColor="#1F2A36"
-                android:textSize="14dp"
-                app:layout_constraintLeft_toRightOf="@id/pin"
-                app:layout_constraintTop_toBottomOf="@id/et_companyname" />
+                <TextView
+                    android:id="@+id/et_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Price"
+                    android:textColor="#1F2A36"
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toRightOf="@id/pin"
+                    app:layout_constraintTop_toBottomOf="@id/et_companyname" />
 
-            <TextView
-                android:id="@+id/et_massage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:text="Massage"
-                android:textColor="#1F2A36"
-                android:textSize="14dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_price" />
+                <TextView
+                    android:id="@+id/et_massage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Massage"
+                    android:textColor="#1F2A36"
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_price" />
 
-            <TextView
-                android:id="@+id/et_jobdesk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Jobdesk"
-                android:textColor="#1F2A36"
-                android:textSize="18dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_massage" />
+                <TextView
+                    android:id="@+id/et_jobdesk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Jobdesk"
+                    android:textColor="#1F2A36"
+                    android:textSize="18dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_massage" />
 
-            <Button
-                android:id="@+id/acc"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="64dp"
-                android:background="@drawable/ic_rectangle_3132profile"
-                android:text="Accept"
-                android:textColor="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_jobdesk" />
+                <Button
+                    android:id="@+id/acc"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="64dp"
+                    android:background="@drawable/ic_rectangle_3132profile"
+                    android:text="Accept"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/et_jobdesk" />
 
-            <Button
-                android:id="@+id/Reject"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="64dp"
-                android:background="@drawable/ic_rectangle_3132profile"
-                android:text="Reject"
-                android:textColor="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/acc" />
-
-
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <Button
+                    android:id="@+id/Reject"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="64dp"
+                    android:background="@drawable/ic_rectangle_3132profile"
+                    android:text="Reject"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/acc" />
 
 
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    </ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>
 

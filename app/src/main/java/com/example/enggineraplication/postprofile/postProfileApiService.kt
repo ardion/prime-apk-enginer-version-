@@ -6,10 +6,6 @@ import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface postProfileApiService {
-
-//    @GET("company/{id}")
-//    suspend fun getCompanybyID( @Path("id") id: String?) : companyResponse
-
     @Multipart
     @POST("worker")
     suspend fun postprofile(

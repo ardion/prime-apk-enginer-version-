@@ -27,17 +27,17 @@ class detailOffersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,
+        binding = DataBindingUtil.setContentView(
+            this,
             R.layout.activity_detail_offers
         )
-        var a=intent.getStringExtra(notifFragment.orderworker)
-        Log.d("inten",a.toString())
-        binding.tvNameproject.text=intent.getStringExtra(notifFragment.nameprojecti)
-        binding.etCompanyname.text=intent.getStringExtra(notifFragment.namecompany)
-        binding.etPrice.text=intent.getStringExtra(notifFragment.pricei)
-        binding.etMassage.text=intent.getStringExtra(notifFragment.massagei)
-        binding.etJobdesk.text=intent.getStringExtra(notifFragment.jobi)
-
+        var a = intent.getStringExtra(notifFragment.orderworker)
+        Log.d("inten", a.toString())
+        binding.tvNameproject.text = intent.getStringExtra(notifFragment.nameprojecti)
+        binding.etCompanyname.text = intent.getStringExtra(notifFragment.namecompany)
+        binding.etPrice.text = intent.getStringExtra(notifFragment.pricei)
+        binding.etMassage.text = intent.getStringExtra(notifFragment.massagei)
+        binding.etJobdesk.text = intent.getStringExtra(notifFragment.jobi)
         binding.acc.setOnClickListener {
             patch("accept")
         }
@@ -46,14 +46,10 @@ class detailOffersActivity : AppCompatActivity() {
             patch("reject")
 
         }
-
-
-
-
     }
 
 
-    private fun patch(decision:String) {
+    private fun patch(decision: String) {
         binding.progressBar.visibility = View.VISIBLE
         val service = ApiClient.getApiClient(this)?.create(transactionApiService::class.java)
 
@@ -65,26 +61,26 @@ class detailOffersActivity : AppCompatActivity() {
                 Log.d("test", "call API = ${Thread.currentThread().name}")
 
                 try {
-                    service?.patchtransaction(intent.getStringExtra(notifFragment.orderworker), decision)
+                    service?.patchtransaction(
+                        intent.getStringExtra(notifFragment.orderworker),
+                        decision
+                    )
                 } catch (e: Throwable) {
                     Log.e("onError", "onError : " + e.message);
                     e.printStackTrace()
-                    withContext(Dispatchers.Main){
-                        Toast.makeText(applicationContext,"failed process", Toast.LENGTH_SHORT).show()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(applicationContext, "failed process", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
-            Log.d("test",response.toString())
+            Log.d("test", response.toString())
             if (response is transactionResponse) {
-
 
             }
             binding.progressBar.visibility = View.GONE
             setResult(Activity.RESULT_OK)
-                finish()
+            finish()
         }
     }
-
-
-
 }

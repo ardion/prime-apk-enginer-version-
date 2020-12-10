@@ -15,8 +15,9 @@ class onboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPref= PreferenceHelper(this)
-        binding = DataBindingUtil.setContentView(this,
+        sharedPref = PreferenceHelper(this)
+        binding = DataBindingUtil.setContentView(
+            this,
             R.layout.activity_onboard
         )
 
@@ -29,7 +30,7 @@ class onboardActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (sharedPref.getBoolean(Constant.pref_is_login)) {
-            startActivity(Intent(this,loginActivity::class.java))
+            startActivity(Intent(this, loginActivity::class.java))
         }
     }
 }

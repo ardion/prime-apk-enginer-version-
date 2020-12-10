@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
     <ScrollView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container"
@@ -27,10 +27,10 @@
                 android:id="@+id/logintext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_signup"
                 android:layout_marginTop="40dp"
-                app:layout_constraintTop_toBottomOf="@id/logo"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:src="@drawable/ic_signup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo" />
 
 
             <TextView
@@ -48,28 +48,28 @@
                 android:id="@+id/username"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:paddingStart="20dp"
                 android:layout_marginTop="96dp"
                 android:background="@drawable/ic_rectangle_313"
                 android:hint="Input name"
+                android:paddingStart="20dp"
+                android:paddingLeft="20dp"
                 android:selectAllOnFocus="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/logintext"
-                android:paddingLeft="20dp" />
+                app:layout_constraintTop_toBottomOf="@id/logintext" />
 
 
             <TextView
                 android:id="@+id/emailtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_goneMarginLeft="30dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:text="Email"
                 app:layout_constraintBottom_toTopOf="@id/email"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/username" />
+                app:layout_constraintTop_toBottomOf="@id/username"
+                app:layout_goneMarginLeft="30dp" />
 
 
             <EditText
@@ -82,11 +82,11 @@
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
                 android:paddingStart="20dp"
+                android:paddingLeft="20dp"
                 android:selectAllOnFocus="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/username"
-                android:paddingLeft="20dp" />
+                app:layout_constraintTop_toBottomOf="@+id/username" />
 
 
             <TextView
@@ -112,24 +112,24 @@
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
                 android:paddingStart="20dp"
+                android:paddingLeft="20dp"
                 android:selectAllOnFocus="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hptext"
-                android:paddingLeft="20dp" />
+                app:layout_constraintTop_toBottomOf="@+id/hptext" />
 
             <TextView
                 android:id="@+id/pwtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_goneMarginLeft="30dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="9dp"
                 android:text="Sandi"
                 app:layout_constraintBottom_toTopOf="@id/pw"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/HP" />
+                app:layout_constraintTop_toBottomOf="@id/HP"
+                app:layout_goneMarginLeft="30dp" />
 
 
             <EditText
@@ -143,24 +143,24 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
+                android:paddingLeft="20dp"
                 android:selectAllOnFocus="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pwtext"
-                android:paddingLeft="20dp" />
+                app:layout_constraintTop_toBottomOf="@+id/pwtext" />
 
             <TextView
                 android:id="@+id/konfpwtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_goneMarginLeft="30dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="9dp"
                 android:text="Confirm password"
                 app:layout_constraintBottom_toTopOf="@id/konfpw"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pw" />
+                app:layout_constraintTop_toBottomOf="@id/pw"
+                app:layout_goneMarginLeft="30dp" />
 
 
             <EditText
@@ -174,11 +174,11 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
+                android:paddingLeft="20dp"
                 android:selectAllOnFocus="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/konfpwtext"
-                android:paddingLeft="20dp" />
+                app:layout_constraintTop_toBottomOf="@+id/konfpwtext" />
 
             <ProgressBar
                 android:id="@+id/loading"
@@ -200,10 +200,10 @@
                 android:id="@+id/logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:src="@drawable/ic_group_978"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="20dp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/SIGNUP"
@@ -212,8 +212,8 @@
                 android:layout_marginTop="70dp"
                 android:layout_marginBottom="64dp"
                 android:background="@drawable/ic_rectangle_3132"
-                android:textColor="#FFFFFF"
                 android:text="Sign up"
+                android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/konfpw" />
@@ -222,29 +222,28 @@
                 android:id="@+id/ask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Do you have an account?"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="200dp"
+                android:text="Do you have an account?"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/SIGNUP"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/SIGNUP" />
 
             <TextView
                 android:id="@+id/signin"
-                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="200dp"
                 android:text="Login"
                 android:textColor="#FF9800"
-                android:layout_marginBottom="200dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/SIGNUP"
                 app:layout_constraintStart_toEndOf="@id/ask"
-                android:layout_marginTop="10dp" />
+                app:layout_constraintTop_toBottomOf="@id/SIGNUP" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
 </layout>

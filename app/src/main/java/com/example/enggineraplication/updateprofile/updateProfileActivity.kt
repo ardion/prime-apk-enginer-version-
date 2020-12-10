@@ -39,23 +39,15 @@ class updateProfileActivity : AppCompatActivity() {
     lateinit var sharedPref: PreferenceHelper
 
     companion object {
-        //image pick code
         private const val IMAGE_PICK_CODE = 1000;
-        //Permission code
         private const val PERMISSION_CODE = 1001;
-
         const val ADD_WORD_REQUEST_CODE = 9013;
-
-
-
     }
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPref= PreferenceHelper(this)
+        sharedPref = PreferenceHelper(this)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_update_profile)
         viewModel = ViewModelProvider(this).get(updateProfileViewModel::class.java)
         val service = ApiClient.getApiClient(this)?.create(updateProfileApiService::class.java)
@@ -63,55 +55,45 @@ class updateProfileActivity : AppCompatActivity() {
             viewModel.setLoginService(service)
         }
 
-        binding.tvNamedetail.text=sharedPref.getString(Constant.NAME_USER)
+        binding.tvNamedetail.text = sharedPref.getString(Constant.NAME_USER)
 
         binding.updateprofilepoto.setOnClickListener {
-            //check runtime permission
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                    PackageManager.PERMISSION_DENIED){
-                    //permission denied
+                    PackageManager.PERMISSION_DENIED
+                ) {
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
-                    //show popup to request runtime permission
                     requestPermissions(permissions, PERMISSION_CODE);
-                }
-                else{
-                    //permission already granted
+                } else {
                     pickImageFromGallery();
                 }
-            }
-            else{
-                //system OS is < Marshmallow
+            } else {
                 pickImageFromGallery();
             }
         }
 
-
         subcribeLiveData()
-//        Log.d("tesp", sharedPref.getString(Constant.PREF_IDCOMPANY).toString())
     }
 
 
-
-
     private fun pickImageFromGallery() {
-        //Intent to pick image
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
-    //handle requested permission result
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED){
-                    //permission from popup granted
+                    PackageManager.PERMISSION_GRANTED
+                ) {
                     pickImageFromGallery()
-                }
-                else{
-                    //permission from popup denied
+                } else {
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -119,38 +101,32 @@ class updateProfileActivity : AppCompatActivity() {
     }
 
 
-    //handle result of picked image
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
 
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             binding.imageView.setImageURI(data?.data)
-
             val filePath = getPath(this, data?.data)
             val file = File(filePath)
-
             var img: MultipartBody.Part? = null
             val mediaTypeImg = "image/jpeg".toMediaType()
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
-
-
-
-
             img = reqFile?.let { it1 ->
-                MultipartBody.Part.createFormData("image", file.name,
+                MultipartBody.Part.createFormData(
+                    "image", file.name,
                     it1
                 )
             }
 
             binding.btnsubmit.setOnClickListener {
                 if (img != null) {
-                    val a=sharedPref.getString(Constant.PREF_ID)
+                    val a = sharedPref.getString(Constant.PREF_ID)
                     val id_user = createPartFromString("$a")
                     val jobdesk = createPartFromString(binding.etJobdesku.text.toString())
                     val domicile = createPartFromString(binding.etDomicileu.text.toString())
-                    Log.d("jobdeskcoba",binding.etDomicileu.text.toString())
+                    Log.d("jobdeskcoba", binding.etDomicileu.text.toString())
                     val workplace = createPartFromString(binding.etWorkplaceu.text.toString())
                     val job_status = createPartFromString(binding.etJobstatusu.text.toString())
                     val instagram = createPartFromString(binding.etInstagramu.text.toString())
@@ -158,27 +134,23 @@ class updateProfileActivity : AppCompatActivity() {
                     val gitlab = createPartFromString(binding.etGitlabu.text.toString())
                     val description_personal = createPartFromString(binding.etDescu.text.toString())
 
-
                     sharedPref.getString(Constant.PREF_IDWORKERP)?.let { it1 ->
                         viewModel.updateprofileworker(
-                            it1, id_user, jobdesk, domicile, workplace, job_status, instagram, github, gitlab, description_personal, img)
+                            it1,
+                            id_user,
+                            jobdesk,
+                            domicile,
+                            workplace,
+                            job_status,
+                            instagram,
+                            github,
+                            gitlab,
+                            description_personal,
+                            img
+                        )
                     }
-
-
-
-
-
-
-
-
                     Log.d("tesprofile", sharedPref.getString(Constant.PREF_IDCOMPANY).toString())
 
-
-
-//
-//                    val intent = Intent(this, parentActivity::class.java)
-//
-//                    startActivity(intent)
                 }
 
             }
@@ -211,8 +183,8 @@ class updateProfileActivity : AppCompatActivity() {
             .toRequestBody(mediaType)
     }
 
-    fun subcribeLiveData(){
-        viewModel.isLoadingProgressBarLiveData.observe(this , Observer {
+    fun subcribeLiveData() {
+        viewModel.isLoadingProgressBarLiveData.observe(this, Observer {
             if (it) {
                 binding.progressBar.visibility = View.VISIBLE
             } else {
@@ -221,8 +193,5 @@ class updateProfileActivity : AppCompatActivity() {
                 finish()
             }
         })
-
-
     }
-
 }

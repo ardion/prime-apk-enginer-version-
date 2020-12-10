@@ -21,25 +21,25 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_group_9782"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginLeft="20dp" />
+                android:src="@drawable/ic_group_9782"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="200dp"
+                android:padding="20dp"
                 android:text='@string/onboard'
                 android:textColor="#FFFFFF"
                 android:textSize="35dp"
-                android:padding="20dp"
-                android:layout_marginBottom="200dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/loginworker"
@@ -49,8 +49,8 @@
                 android:layout_marginTop="70dp"
                 android:layout_marginBottom="64dp"
                 android:background="@drawable/ic_rectangle_3132onboard"
-                android:textColor="#5E50A1"
                 android:text="Login  as worker"
+                android:textColor="#5E50A1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text" />
@@ -59,10 +59,10 @@
                 android:id="@+id/or"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OR"
-                android:textSize="20dp"
-                android:textColor="#FFFFFF"
                 android:layout_marginTop="10dp"
+                android:text="OR"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/loginworker" />
@@ -70,19 +70,19 @@
             <View
                 android:layout_width="130dp"
                 android:layout_height="2dp"
+                android:layout_marginTop="25dp"
                 android:background="#FFFFFF"
                 app:layout_constraintEnd_toStartOf="@id/or"
-                android:layout_marginTop="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/loginworker" />
 
             <View
                 android:layout_width="130dp"
                 android:layout_height="2dp"
-                android:background="#FFFFFF"
-                app:layout_constraintStart_toEndOf="@id/or"
                 android:layout_marginTop="25dp"
+                android:background="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/or"
                 app:layout_constraintTop_toBottomOf="@+id/loginworker" />
 
             <Button
@@ -93,8 +93,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="80dp"
                 android:background="@drawable/ic_rectangle_3132onboard2"
-                android:textColor="#FFFFFF"
                 android:text="Login  as recruiter"
+                android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/or" />

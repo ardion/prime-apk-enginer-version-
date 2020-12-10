@@ -31,7 +31,6 @@ class experienceActivity : AppCompatActivity() {
     }
 
     private fun useCoroutineToCallAPI() {
-//        binding.progressBar.visibility = View.VISIBLE
         val service = ApiClient.getApiClient(this)?.create(experienceApiService::class.java)
         val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
 
@@ -68,8 +67,5 @@ class experienceActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
             Log.d("android1", "finish : ${Thread.currentThread().name}")
         }
-
-
     }
-
 }

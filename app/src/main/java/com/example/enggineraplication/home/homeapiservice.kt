@@ -8,6 +8,3 @@ interface homeapiservice {
 
 
 }
-
-
-//"[skill]=$search"

@@ -5,37 +5,41 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#E5E5E5">
+            android:background="#E5E5E5"
+            android:orientation="vertical">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="343dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginVertical="20dp"
                 android:background="@drawable/backgroundpost">
+
                 <ImageView
                     android:id="@+id/updatefoto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_edit_24"
-                    app:layout_constraintTop_toBottomOf="@id/image_view"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_marginTop="25dp"
-                    android:layout_marginRight="40dp"/>
+                    android:layout_marginRight="40dp"
+                    android:src="@drawable/ic_baseline_edit_24"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_view" />
+
                 <TextView
                     android:id="@+id/textedit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
                     android:text="Edit"
-                    android:textSize="18dp"
                     android:textColor="#9EA0A5"
-                    app:layout_constraintTop_toBottomOf="@id/image_view"
+                    android:textSize="18dp"
                     app:layout_constraintStart_toEndOf="@id/updatefoto"
-                    android:layout_marginTop="25dp"/>
+                    app:layout_constraintTop_toBottomOf="@id/image_view" />
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -57,210 +61,204 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="70dp"
                     android:fontFamily="sans-serif-black"
-                    app:layout_constraintTop_toBottomOf="@id/image_view"
-                    app:layout_constraintLeft_toLeftOf="parent"
                     android:text="Ardion Massaid"
                     android:textColor="#1F2A36"
-                    android:textSize="22dp" />
+                    android:textSize="22dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_view" />
+
                 <TextView
                     android:id="@+id/textjobdesk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Job desk"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/tv_namedetailp"
+                    android:text="Job desk"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/tv_namedetailp" />
 
                 <EditText
                     android:id="@+id/et_jobdeskp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rexperporto"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@id/textjobdesk"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingLeft="10dp"
+                    android:background="@drawable/ic_rexperporto"
                     android:hint="Input jobdesk"
+                    android:paddingLeft="10dp"
                     android:textColor="#1F2A36"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textjobdesk" />
+
                 <TextView
                     android:id="@+id/textdomicile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Domicile"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/et_jobdeskp"
+                    android:text="Domicile"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/et_jobdeskp" />
 
                 <EditText
                     android:id="@+id/et_domicilep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rexperporto"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@id/textdomicile"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingLeft="10dp"
+                    android:background="@drawable/ic_rexperporto"
                     android:hint="Input domicile"
+                    android:paddingLeft="10dp"
                     android:textColor="#1F2A36"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textdomicile" />
 
                 <TextView
                     android:id="@+id/textworkplace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Workplace"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/et_domicilep"
+                    android:text="Workplace"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/et_domicilep" />
 
                 <EditText
                     android:id="@+id/et_workplacep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rexperporto"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@id/textworkplace"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingLeft="10dp"
+                    android:background="@drawable/ic_rexperporto"
                     android:hint="Input workplace"
+                    android:paddingLeft="10dp"
                     android:textColor="#1F2A36"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textworkplace" />
 
                 <TextView
                     android:id="@+id/textdesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/et_workplacep"
+                    android:text="Description"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/et_workplacep" />
 
                 <EditText
                     android:id="@+id/et_descp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rexperporto"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    android:paddingBottom="100dp"
-                    app:layout_constraintTop_toBottomOf="@id/textdesc"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingLeft="10dp"
+                    android:background="@drawable/ic_rexperporto"
                     android:hint="Input description"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="100dp"
                     android:textColor="#1F2A36"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textdesc" />
 
                 <TextView
                     android:id="@+id/textjobstatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Job status"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/et_descp"
+                    android:text="Job status"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/et_descp" />
 
                 <EditText
                     android:id="@+id/et_jobstatusp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rexperporto"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@id/textjobstatus"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingLeft="10dp"
+                    android:background="@drawable/ic_rexperporto"
                     android:hint="Input workplace"
+                    android:paddingLeft="10dp"
                     android:textColor="#1F2A36"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textjobstatus" />
 
                 <TextView
                     android:id="@+id/textinsagram"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Instagram"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/et_jobstatusp"
+                    android:text="Instagram"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/et_jobstatusp" />
 
                 <EditText
                     android:id="@+id/et_instagramp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rexperporto"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@id/textinsagram"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingLeft="10dp"
+                    android:background="@drawable/ic_rexperporto"
                     android:hint="Input instagram"
+                    android:paddingLeft="10dp"
                     android:textColor="#1F2A36"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textinsagram" />
 
                 <TextView
                     android:id="@+id/textgithub"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Github"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/et_instagramp"
+                    android:text="Github"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/et_instagramp" />
 
                 <EditText
                     android:id="@+id/et_githubp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rexperporto"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@id/textgithub"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingLeft="10dp"
+                    android:background="@drawable/ic_rexperporto"
                     android:hint="Input github"
+                    android:paddingLeft="10dp"
                     android:textColor="#1F2A36"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textgithub" />
 
                 <TextView
                     android:id="@+id/textgitlab"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gitlab"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/et_githubp"
+                    android:text="Gitlab"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/et_githubp" />
 
                 <EditText
                     android:id="@+id/et_gitlabp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rexperporto"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@id/textgitlab"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingLeft="10dp"
+                    android:background="@drawable/ic_rexperporto"
                     android:hint="Input gitlab"
+                    android:paddingLeft="10dp"
                     android:textColor="#1F2A36"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textgitlab" />
 
                 <Button
                     android:id="@+id/btnsubmitp"
@@ -269,25 +267,15 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="60dp"
                     android:background="@drawable/ic_rectangle_3132profile"
-                    android:textColor="#FFFFFF"
                     android:text="Submit"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_gitlabp" />
-
-
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </LinearLayout>
-
-
-
-
     </ScrollView>
-
 </layout>
 
 

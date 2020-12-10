@@ -35,23 +35,14 @@ class postProfileActivity : AppCompatActivity() {
     lateinit var sharedPref: PreferenceHelper
 
     companion object {
-        //image pick code
         private const val IMAGE_PICK_CODE = 2000;
-        //Permission code
         private const val PERMISSION_CODE = 2001;
-
         const val idd_company = "anjay"
-
-
-
     }
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPref= PreferenceHelper(this)
+        sharedPref = PreferenceHelper(this)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_post_profile)
         viewModel = ViewModelProvider(this).get(postProfileViewModel::class.java)
@@ -61,64 +52,56 @@ class postProfileActivity : AppCompatActivity() {
             viewModel.setLoginService(service)
         }
 
-        Log.d("testttttttp",binding.etJobdeskp.text.toString())
+        Log.d("testttttttp", binding.etJobdeskp.text.toString())
 
         binding.updatefoto.setOnClickListener {
-            //check runtime permission
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                    PackageManager.PERMISSION_DENIED){
-                    //permission denied
+                    PackageManager.PERMISSION_DENIED
+                ) {
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
-                    //show popup to request runtime permission
                     requestPermissions(permissions, PERMISSION_CODE);
-                }
-                else{
-                    //permission already granted
+                } else {
                     pickImageFromGallery();
                 }
-            }
-            else{
-                //system OS is < Marshmallow
+            } else {
                 pickImageFromGallery();
             }
         }
 
 
-binding.tvNamedetailp.text=sharedPref.getString(Constant.NAME_USER)
-        Log.d("idpc",sharedPref.getString(Constant.PREF_IDWORKERP).toString())
+        binding.tvNamedetailp.text = sharedPref.getString(Constant.NAME_USER)
+        Log.d("idpc", sharedPref.getString(Constant.PREF_IDWORKERP).toString())
     }
 
 
     override fun onStart() {
         super.onStart()
-        if (sharedPref.getBoolean(Constant.pref_is_form) && sharedPref.getBoolean(Constant.pref_is_login) ) {
-            startActivity(Intent(this,parentActivity::class.java))
+        if (sharedPref.getBoolean(Constant.pref_is_form) && sharedPref.getBoolean(Constant.pref_is_login)) {
+            startActivity(Intent(this, parentActivity::class.java))
             finish()
         }
     }
 
 
-
-
     private fun pickImageFromGallery() {
-        //Intent to pick image
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
-    //handle requested permission result
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED){
-                    //permission from popup granted
+                    PackageManager.PERMISSION_GRANTED
+                ) {
                     pickImageFromGallery()
-                }
-                else{
-                    //permission from popup denied
+                } else {
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -126,38 +109,32 @@ binding.tvNamedetailp.text=sharedPref.getString(Constant.NAME_USER)
     }
 
 
-    //handle result of picked image
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
 
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             binding.imageView.setImageURI(data?.data)
-
             val filePath = getPath(this, data?.data)
             val file = File(filePath)
-
             var img: MultipartBody.Part? = null
             val mediaTypeImg = "image/jpeg".toMediaType()
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
-
-
-
-
             img = reqFile?.let { it1 ->
-                MultipartBody.Part.createFormData("image", file.name,
+                MultipartBody.Part.createFormData(
+                    "image", file.name,
                     it1
                 )
             }
 
             binding.btnsubmitp.setOnClickListener {
                 if (img != null) {
-                    Log.d("testttttttp",binding.etJobdeskp.text.toString())
-                    val a=sharedPref.getString(Constant.PREF_ID)
+                    Log.d("testttttttp", binding.etJobdeskp.text.toString())
+                    val a = sharedPref.getString(Constant.PREF_ID)
                     val id_user = createPartFromString("$a")
                     val jobdesk = createPartFromString(binding.etJobdeskp.text.toString())
-                    Log.d("hmmm",binding.etJobdeskp.text.toString())
+                    Log.d("hmmm", binding.etJobdeskp.text.toString())
                     val domicile = createPartFromString(binding.etDomicilep.text.toString())
                     val workplace = createPartFromString(binding.etWorkplacep.text.toString())
                     val job_status = createPartFromString(binding.etJobstatusp.text.toString())
@@ -165,25 +142,25 @@ binding.tvNamedetailp.text=sharedPref.getString(Constant.NAME_USER)
                     val github = createPartFromString(binding.etGithubp.text.toString())
                     val gitlab = createPartFromString(binding.etGitlabp.text.toString())
                     val description_personal = createPartFromString(binding.etDescp.text.toString())
-
-                    viewModel.postProfileApi(id_user, jobdesk, domicile, workplace, job_status, instagram, github, gitlab, description_personal, img)
-
+                    viewModel.postProfileApi(
+                        id_user,
+                        jobdesk,
+                        domicile,
+                        workplace,
+                        job_status,
+                        instagram,
+                        github,
+                        gitlab,
+                        description_personal,
+                        img
+                    )
                     sharedPref.put(Constant.pref_is_form, true)
-
-
-                    Log.d("idpsubmit",sharedPref.getString(Constant.PREF_IDWORKERP).toString())
-
+                    Log.d("idpsubmit", sharedPref.getString(Constant.PREF_IDWORKERP).toString())
                     val intent = Intent(this, parentActivity::class.java)
-
                     startActivity(intent)
-
-
-
                 }
-
             }
         }
-
     }
 
     fun getPath(context: Context, uri: Uri?): String {

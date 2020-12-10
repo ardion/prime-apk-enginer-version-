@@ -23,7 +23,7 @@ class ApiClient {
         }
 
 
-        fun getApiClient(mContext: Context) : Retrofit? {
+        fun getApiClient(mContext: Context): Retrofit? {
 
             if (retrofit == null) {
                 val okHttpClient = OkHttpClient.Builder()
@@ -40,7 +40,7 @@ class ApiClient {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
             }
-            return  retrofit
+            return retrofit
         }
 
     }

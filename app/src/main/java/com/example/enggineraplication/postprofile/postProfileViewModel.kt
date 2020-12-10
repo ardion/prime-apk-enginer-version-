@@ -19,11 +19,7 @@ class postProfileViewModel : ViewModel(), CoroutineScope {
 
     private lateinit var service: postProfileApiService
 
-        lateinit var sharedPref: PreferenceHelper
-//    sharedPref= PreferenceHelper(this)
-//    val dataIDcompany = MutableLiveData<String>()
-
-
+    lateinit var sharedPref: PreferenceHelper
     override val coroutineContext: CoroutineContext
         get() = Job() + Dispatchers.Main
 
@@ -32,8 +28,8 @@ class postProfileViewModel : ViewModel(), CoroutineScope {
         this.service = service
     }
 
-    fun getSharedPreference(mContex:Context){
-        sharedPref=PreferenceHelper(mContex)
+    fun getSharedPreference(mContex: Context) {
+        sharedPref = PreferenceHelper(mContex)
     }
 
 
@@ -57,7 +53,16 @@ class postProfileViewModel : ViewModel(), CoroutineScope {
 
 
                     service?.postprofile(
-                        id_user, jobdesk, domicile, workplace, job_status, instagram, github, gitlab, description_personal, image
+                        id_user,
+                        jobdesk,
+                        domicile,
+                        workplace,
+                        job_status,
+                        instagram,
+                        github,
+                        gitlab,
+                        description_personal,
+                        image
                     )
                 } catch (e: Throwable) {
                     e.printStackTrace()
@@ -68,9 +73,6 @@ class postProfileViewModel : ViewModel(), CoroutineScope {
                 sharedPref.put(Constant.PREF_IDWORKERP, response.data.id.toString())
 
 
-//                var list = response.data.id
-//                Log.d("responid",response.data.id.toString())
-//                dataIDcompany.value = list
             }
 
         }

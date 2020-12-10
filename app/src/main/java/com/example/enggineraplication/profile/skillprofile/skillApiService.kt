@@ -6,11 +6,13 @@ import retrofit2.http.*
 interface skillApiService {
 
     @GET("skill/{id}")
-    suspend fun getAllSkill(@Path("id") id: String?) : skillResponse
+    suspend fun getAllSkill(@Path("id") id: String?): skillResponse
 
     @FormUrlEncoded
     @POST("skill")
-    suspend fun postSkill(@Field("id_worker") id_worker: String?,
-                             @Field("skill") skill: String?) : skillAddResponse
+    suspend fun postSkill(
+        @Field("id_worker") id_worker: String?,
+        @Field("skill") skill: String?
+    ): skillAddResponse
 }
 

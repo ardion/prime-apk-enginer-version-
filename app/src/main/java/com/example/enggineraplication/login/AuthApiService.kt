@@ -9,9 +9,11 @@ interface AuthApiService {
 
     @FormUrlEncoded
     @POST("regis/login")
-    suspend fun loginRequest(@Field("email") email: String?,
-                             @Field("password") password: String?) : LoginResponse
+    suspend fun loginRequest(
+        @Field("email") email: String?,
+        @Field("password") password: String?
+    ): LoginResponse
 
     @GET("regis/{id}")
-    suspend fun getDataUser( @Path("id") id: String?): cekDataUserResponse
+    suspend fun getDataUser(@Path("id") id: String?): cekDataUserResponse
 }

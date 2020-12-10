@@ -35,17 +35,15 @@ class addExperienceActivity : AppCompatActivity() {
     lateinit var sharedPref: PreferenceHelper
 
     companion object {
-        //image pick code
         private const val IMAGE_PICK_CODE = 1000;
-        //Permission code
         private const val PERMISSION_CODE = 1001;
-
         const val ADD_WORD_REQUEST_CODE = 9013;
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_experience)
-        sharedPref= PreferenceHelper(this)
+        sharedPref = PreferenceHelper(this)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_experience)
         viewModel = ViewModelProvider(this).get(AddExperienceViewModel::class.java)
         val service = ApiClient.getApiClient(this)?.create(experienceApiService::class.java)
@@ -54,22 +52,16 @@ class addExperienceActivity : AppCompatActivity() {
         }
 
         binding.btnPickImage.setOnClickListener {
-            //check runtime permission
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                    PackageManager.PERMISSION_DENIED){
-                    //permission denied
+                    PackageManager.PERMISSION_DENIED
+                ) {
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
-                    //show popup to request runtime permission
                     requestPermissions(permissions, PERMISSION_CODE);
-                }
-                else{
-                    //permission already granted
+                } else {
                     pickImageFromGallery();
                 }
-            }
-            else{
-                //system OS is < Marshmallow
+            } else {
                 pickImageFromGallery();
             }
         }
@@ -79,47 +71,44 @@ class addExperienceActivity : AppCompatActivity() {
     }
 
     private fun pickImageFromGallery() {
-        //Intent to pick image
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
-    //handle requested permission result
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED){
-                    //permission from popup granted
+                    PackageManager.PERMISSION_GRANTED
+                ) {
                     pickImageFromGallery()
-                }
-                else{
-                    //permission from popup denied
+                } else {
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    //handle result of picked image
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             binding.imageView.setImageURI(data?.data)
-
             val filePath = getPath(this, data?.data)
             val file = File(filePath)
-
             var img: MultipartBody.Part? = null
             val mediaTypeImg = "image/jpeg".toMediaType()
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
-
-
             img = reqFile?.let { it1 ->
-                MultipartBody.Part.createFormData("image", file.name,
+                MultipartBody.Part.createFormData(
+                    "image", file.name,
                     it1
                 )
             }
@@ -128,14 +117,16 @@ class addExperienceActivity : AppCompatActivity() {
                 if (img != null) {
                     sharedPref.getString(Constant.PREF_IDWORKERP)?.let { it1 ->
                         viewModel.postExperienceApi(
-                            it1,binding.etPosition.text.toString(),binding.etDate.text.toString(),binding.etCompanyname.text.toString(),
-                            binding.etDescwork.text.toString())
+                            it1,
+                            binding.etPosition.text.toString(),
+                            binding.etDate.text.toString(),
+                            binding.etCompanyname.text.toString(),
+                            binding.etDescwork.text.toString()
+                        )
                     }
                 }
-
             }
         }
-
     }
 
     fun getPath(context: Context, uri: Uri?): String {
@@ -163,8 +154,8 @@ class addExperienceActivity : AppCompatActivity() {
             .toRequestBody(mediaType)
     }
 
-    fun subcribeLiveData(){
-        viewModel.isLoadingProgressBarLiveData.observe(this , Observer {
+    fun subcribeLiveData() {
+        viewModel.isLoadingProgressBarLiveData.observe(this, Observer {
             if (it) {
                 binding.progressBar.visibility = View.VISIBLE
             } else {
@@ -173,8 +164,5 @@ class addExperienceActivity : AppCompatActivity() {
                 finish()
             }
         })
-
-
     }
-
 }

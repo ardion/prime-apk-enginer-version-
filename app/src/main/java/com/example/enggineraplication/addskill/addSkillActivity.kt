@@ -23,11 +23,9 @@ import com.example.enggineraplication.parentActivity
 import com.example.enggineraplication.profile.skillprofile.skillApiService
 
 
-
 class addSkillActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddSkillBinding
-
     private lateinit var viewModel: AddSkillViewModel
     lateinit var sharedPref: PreferenceHelper
 
@@ -39,7 +37,7 @@ class addSkillActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_skill)
-        sharedPref= PreferenceHelper(this)
+        sharedPref = PreferenceHelper(this)
         val service = ApiClient.getApiClient(this)?.create(skillApiService::class.java)
 
         viewModel = ViewModelProvider(this).get(AddSkillViewModel::class.java)
@@ -49,27 +47,15 @@ class addSkillActivity : AppCompatActivity() {
         }
 
         binding.btnsubmit.setOnClickListener {
-            sharedPref.getString(Constant.PREF_IDWORKERP)?.let { it1 -> viewModel.postSKillApi(it1, binding.etSkilladd.text.toString()) }
+            sharedPref.getString(Constant.PREF_IDWORKERP)
+                ?.let { it1 -> viewModel.postSKillApi(it1, binding.etSkilladd.text.toString()) }
         }
 
         subcribeLiveData()
     }
 
-//    private fun subscribeLiveData() {
-//        viewModel.isLoginLiveData.observe(this, Observer {
-//            Log.d("android1", "$it")
-//            if (it) {
-//                Toast.makeText(this, "Add Succcess", Toast.LENGTH_SHORT).show()
-//                finish()
-//            } else {
-//                Toast.makeText(this, "Add Failed!", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//
-//    }
-
-    fun subcribeLiveData(){
-        viewModel.isLoginLiveData.observe(this , Observer {
+    fun subcribeLiveData() {
+        viewModel.isLoginLiveData.observe(this, Observer {
             if (it) {
                 binding.progressBar.visibility = View.VISIBLE
             } else {
@@ -78,7 +64,5 @@ class addSkillActivity : AppCompatActivity() {
                 finish()
             }
         })
-
-
     }
 }

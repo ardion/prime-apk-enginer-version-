@@ -1,165 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarslide"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@drawable/ic_group_925"
-        android:theme="@style/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-        <LinearLayout
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarslide"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@drawable/ic_group_925"
+            android:theme="@style/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Prime"
-                android:textSize="30dp"
-                android:textColor="#FAF9F8"
-                android:fontFamily="cursive"
-                android:gravity="center"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="cursive"
+                    android:gravity="center"
+                    android:text="Prime"
+                    android:textColor="#FAF9F8"
+                    android:textSize="30dp" />
 
 
-        </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        app:layout_constraintTop_toBottomOf="@id/toolbarslide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingHorizontal="16dp"
-            tools:context=".project.AddProjectActivity">
+            app:layout_constraintTop_toBottomOf="@id/toolbarslide">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Experience"
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginBottom="5dp"
-                android:text="Position"
-                android:textSize="18dp" />
-
-            <EditText
-                android:id="@+id/et_position"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/ic_rexperporto"
-                android:paddingLeft="20dp" />
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                tools:context=".project.AddProjectActivity">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginBottom="5dp"
-                android:text="Date"
-                android:textSize="18dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Experience"
+                    android:textSize="18dp" />
 
-            <EditText
-                android:id="@+id/et_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/ic_rexperporto"
-                android:inputType="text"
-                android:paddingLeft="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="5dp"
+                    android:text="Position"
+                    android:textSize="18dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginBottom="5dp"
-                android:text="Company name"
-                android:textSize="18dp" />
+                <EditText
+                    android:id="@+id/et_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/ic_rexperporto"
+                    android:paddingLeft="20dp" />
 
-            <EditText
-                android:id="@+id/et_companyname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/ic_rexperporto"
-                android:inputType="text"
-                android:paddingLeft="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="5dp"
+                    android:text="Date"
+                    android:textSize="18dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginBottom="5dp"
-                android:text="Job description"
-                android:textSize="18dp" />
+                <EditText
+                    android:id="@+id/et_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/ic_rexperporto"
+                    android:inputType="text"
+                    android:paddingLeft="20dp" />
 
-            <EditText
-                android:id="@+id/et_descwork"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/ic_rexperporto"
-                android:inputType="text"
-                android:paddingLeft="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="5dp"
+                    android:text="Company name"
+                    android:textSize="18dp" />
 
+                <EditText
+                    android:id="@+id/et_companyname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/ic_rexperporto"
+                    android:inputType="text"
+                    android:paddingLeft="20dp" />
 
-            <TextView
-                android:id="@+id/tv_lbl_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Image"
-                android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="5dp"
+                    android:text="Job description"
+                    android:textSize="18dp" />
 
-            <Button
-                android:id="@+id/btn_pick_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="Pick a Image" />
-
-            <ImageView
-                android:id="@+id/image_view"
-                android:layout_width="200dp"
-                android:layout_height="100dp"
-                android:layout_marginBottom="24dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_image_24" />
-
-            <Button
-                android:id="@+id/btn_submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="90dp"
-                android:background="@drawable/ic_submitexperporto"
-                android:fontFamily="sans-serif-black"
-                android:text="Add experience"
-                android:textColor="#FBB017" />
-
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/et_descwork"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/ic_rexperporto"
+                    android:inputType="text"
+                    android:paddingLeft="20dp" />
 
 
-    </ScrollView>
+                <TextView
+                    android:id="@+id/tv_lbl_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Image"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_pick_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="Pick a Image" />
+
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="24dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_image_24" />
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="90dp"
+                    android:background="@drawable/ic_submitexperporto"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Add experience"
+                    android:textColor="#FBB017" />
+
+            </LinearLayout>
+
+
+        </ScrollView>
 
         <ProgressBar
             android:id="@+id/progress_bar"

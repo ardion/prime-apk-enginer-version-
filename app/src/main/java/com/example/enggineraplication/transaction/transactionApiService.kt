@@ -8,5 +8,8 @@ interface transactionApiService {
 
     @FormUrlEncoded
     @PATCH("projectman/{id}")
-    suspend fun patchtransaction( @Path("id") id: String?,@Field("status") status: String?): transactionResponse
+    suspend fun patchtransaction(
+        @Path("id") id: String?,
+        @Field("status") status: String?
+    ): transactionResponse
 }

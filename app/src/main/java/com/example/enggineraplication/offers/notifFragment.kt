@@ -27,15 +27,17 @@ class notifFragment : Fragment() {
     lateinit var sharedPref: PreferenceHelper
     private lateinit var coroutineScope: CoroutineScope
     private lateinit var recyclerView: notifAdabter
+
     companion object {
         const val orderworker = "orderworker"
         const val namecompany = "namecompany"
         const val nameprojecti = "nameproject"
         const val pricei = "price"
         const val massagei = "massage"
-        const val  jobi = "job"
-        const val  statusi = "status"
+        const val jobi = "job"
+        const val statusi = "status"
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,7 +45,6 @@ class notifFragment : Fragment() {
 
         binding = FragmentNotifBinding.inflate(inflater)
         sharedPref = context?.let { PreferenceHelper(it) }!!
-//        binding.recyclerView.adapter = notifAdabter()
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         useCoroutineToCallAPI()
@@ -53,7 +54,6 @@ class notifFragment : Fragment() {
 
 
     private fun useCoroutineToCallAPI() {
-//        binding.progressBar.visibility = View.VISIBLE
         val service =
             context?.let { ApiClient.getApiClient(it)?.create(notifapiservice::class.java) }
         val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
@@ -90,18 +90,12 @@ class notifFragment : Fragment() {
                     )
                 } ?: listOf()
 
-                if (response.data.isEmpty()){
+                if (response.data.isEmpty()) {
                     Log.d("androoooo", response.data.toString())
                     binding.recyclerView.visibility = View.GONE
-                }else {
+                } else {
                     binding.imagenotif.visibility = View.GONE
                 }
-
-
-
-
-
-
 
                 (binding.recyclerView.adapter as notifAdabter).addList(list)
             } else if (response is Throwable) {
@@ -136,7 +130,6 @@ class notifFragment : Fragment() {
                 intent.putExtra(massagei, massage)
                 intent.putExtra(jobi, job)
                 intent.putExtra(statusi, status)
-//                startActivity(intent)
                 startActivityForResult(intent, detailOffersActivity.ADD_WORD_REQUEST_CODE)
             }
         })
@@ -149,8 +142,9 @@ class notifFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == detailOffersActivity.ADD_WORD_REQUEST_CODE ) {
-            binding.recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        if (resultCode == Activity.RESULT_OK && requestCode == detailOffersActivity.ADD_WORD_REQUEST_CODE) {
+            binding.recyclerView.layoutManager =
+                LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             useCoroutineToCallAPI()
             setUpRecyclerView()
 

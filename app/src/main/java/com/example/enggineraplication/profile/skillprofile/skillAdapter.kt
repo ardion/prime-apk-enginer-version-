@@ -20,8 +20,15 @@ class skillAdabter() : RecyclerView.Adapter<skillAdabter.skillHolder>() {
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):skillHolder {
-        return skillHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.itemskill, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): skillHolder {
+        return skillHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.itemskill,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int = items.size
@@ -31,6 +38,6 @@ class skillAdabter() : RecyclerView.Adapter<skillAdabter.skillHolder>() {
         holder.binding.skill.text = item.skill
     }
 
-    class skillHolder( val binding: ItemskillBinding) : RecyclerView.ViewHolder(binding.root)
+    class skillHolder(val binding: ItemskillBinding) : RecyclerView.ViewHolder(binding.root)
 
 }

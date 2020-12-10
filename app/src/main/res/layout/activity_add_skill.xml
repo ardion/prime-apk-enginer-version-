@@ -7,35 +7,39 @@
         android:layout_height="match_parent"
         android:background="#E5E5E5"
         android:orientation="vertical">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarslide"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@drawable/ic_group_925"
-        android:theme="@style/toolbar"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-        <LinearLayout
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarslide"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@drawable/ic_group_925"
+            android:theme="@style/toolbar"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Prime"
-                android:textSize="30dp"
-                android:textColor="#FAF9F8"
-                android:fontFamily="cursive"
-                android:gravity="center"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="cursive"
+                    android:gravity="center"
+                    android:text="Prime"
+                    android:textColor="#FAF9F8"
+                    android:textSize="30dp" />
 
 
-        </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#E5E5E5">
+            android:background="#E5E5E5"
+            android:orientation="vertical">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="343dp"
                 android:layout_height="match_parent"
@@ -50,25 +54,25 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="70dp"
                     android:fontFamily="sans-serif-black"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
                     android:text="Skill"
                     android:textColor="#E5E5E5"
-                    android:textSize="22dp" />
+                    android:textSize="22dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/et_skilladd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_rexperporto"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@id/textskill"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:paddingLeft="10dp"
+                    android:background="@drawable/ic_rexperporto"
                     android:hint="Input skill"
+                    android:paddingLeft="10dp"
                     android:textColor="#1F2A36"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textskill" />
 
 
                 <Button
@@ -78,11 +82,11 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="60dp"
                     android:background="@drawable/ic_rectangle_3132profile"
-                    android:textColor="#FFFFFF"
                     android:text="Submit"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_skilladd" />
 
                 <ProgressBar
@@ -97,15 +101,9 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
-
-
-
-
 
     </LinearLayout>
 

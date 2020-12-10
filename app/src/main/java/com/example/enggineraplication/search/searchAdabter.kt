@@ -10,10 +10,9 @@ import com.example.enggineraplication.R
 import com.example.enggineraplication.databinding.ItemWorkerBinding
 import com.squareup.picasso.Picasso
 
-class searchAdabter(val items: ArrayList<searchModel>
-                    , val listener: OnClickViewListener
+class searchAdabter(
+    val items: ArrayList<searchModel>, val listener: OnClickViewListener
 ) : RecyclerView.Adapter<searchAdabter.searchHolder>() {
-
 
 
     fun addList(list: List<searchModel>) {
@@ -22,17 +21,24 @@ class searchAdabter(val items: ArrayList<searchModel>
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):searchHolder {
-        return searchHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_worker, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): searchHolder {
+        return searchHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_worker,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: searchHolder, position: Int) {
 
-
         val item = items[position]
-        Picasso.get().load("http://35.172.182.122:8080/uploads/"+item.image).into(holder.binding.image)
+        Picasso.get().load("http://35.172.182.122:8080/uploads/" + item.image)
+            .into(holder.binding.image)
         holder.binding.tvName.text = item.name
 
         var word = item.skill.split(",")
@@ -41,7 +47,6 @@ class searchAdabter(val items: ArrayList<searchModel>
 
         if (word.size < 2) {
             holder.binding.tvSkill1.text = word[0]
-
             holder.binding.tvSkill2.visibility = View.GONE
             holder.binding.tvSkill3.visibility = View.GONE
             holder.binding.tvMin.visibility = View.GONE
@@ -62,14 +67,14 @@ class searchAdabter(val items: ArrayList<searchModel>
         }
         holder.binding.tvDomicile.text = item.domicile
         holder.binding.containerworker.setOnClickListener {
-        listener.OnClick(item.id_worker)
+            listener.OnClick(item.id_worker)
         }
     }
 
-    class searchHolder( val binding: ItemWorkerBinding) : RecyclerView.ViewHolder(binding.root)
+    class searchHolder(val binding: ItemWorkerBinding) : RecyclerView.ViewHolder(binding.root)
 
-    interface OnClickViewListener{
-        fun OnClick(id:String)
+    interface OnClickViewListener {
+        fun OnClick(id: String)
     }
 }
 

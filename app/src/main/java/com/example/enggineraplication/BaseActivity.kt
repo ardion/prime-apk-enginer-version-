@@ -16,17 +16,18 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun findviews() {}
     open fun initlisteners() {}
-    open fun get(){}
+    open fun get() {}
     open fun layoutid(Id: Int) {
         setContentView(Id)
     }
 
-    var start:Intent?=null
-    protected inline fun <reified ClassActivity>inten(context: Context){
-        start = Intent(context,ClassActivity::class.java)
+    var start: Intent? = null
+    protected inline fun <reified ClassActivity> inten(context: Context) {
+        start = Intent(context, ClassActivity::class.java)
     }
-    open fun putextra(name:String,value:String){
-        start?.putExtra(name,value)
+
+    open fun putextra(name: String, value: String) {
+        start?.putExtra(name, value)
     }
 
     fun setErrorDialog(title: String?, message: String?) {
@@ -36,7 +37,8 @@ abstract class BaseActivity : AppCompatActivity() {
             .setMessage(message)
             .setCancelable(true)
             .setPositiveButton("Ok") { dialog, id ->
-                dialog.dismiss()}
+                dialog.dismiss()
+            }
         dialog.show()
     }
 

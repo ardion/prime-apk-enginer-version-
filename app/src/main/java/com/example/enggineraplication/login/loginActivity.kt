@@ -49,18 +49,20 @@ class loginActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
         if (sharedPref.getBoolean(Constant.pref_is_login) && sharedPref.getBoolean(Constant.pref_is_form)) {
-            startActivity(Intent(this,parentActivity::class.java))
-        } else if(sharedPref.getBoolean(Constant.pref_is_login)==true && sharedPref.getBoolean(Constant.pref_is_form)==false){
-            startActivity(Intent(this,postProfileActivity::class.java))
+            startActivity(Intent(this, parentActivity::class.java))
+        } else if (sharedPref.getBoolean(Constant.pref_is_login) == true && sharedPref.getBoolean(
+                Constant.pref_is_form
+            ) == false
+        ) {
+            startActivity(Intent(this, postProfileActivity::class.java))
         }
     }
 
-    private fun moveIntent(){
+    private fun moveIntent() {
 
-        startActivity(Intent(this,postProfileActivity::class.java))
+        startActivity(Intent(this, postProfileActivity::class.java))
         finish()
     }
-
 
 
     private fun callSignInApi() {
@@ -82,13 +84,17 @@ class loginActivity : BaseActivity() {
                 } catch (e: Throwable) {
                     Log.e("onError", "onError : " + e.message);
                     e.printStackTrace()
-                    withContext(Dispatchers.Main){
-                        Toast.makeText(applicationContext,"invalid username/password", Toast.LENGTH_SHORT).show()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            applicationContext,
+                            "invalid username/password",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         binding.loading.visibility = View.GONE
                     }
                 }
             }
-            Log.d("test",response.toString())
+            Log.d("test", response.toString())
             if (response is LoginResponse) {
                 binding.loading.visibility = View.GONE
 
@@ -111,7 +117,7 @@ class loginActivity : BaseActivity() {
         }
     }
 
-    private fun getdatauser(){
+    private fun getdatauser() {
         val service = ApiClient.getApiClient(this)?.create(AuthApiService::class.java)
 
         coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
@@ -126,7 +132,7 @@ class loginActivity : BaseActivity() {
                 } catch (e: Throwable) {
                     Log.e("onError", "onError : " + e.message);
                     e.printStackTrace()
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
 
                     }
                 }
@@ -135,11 +141,11 @@ class loginActivity : BaseActivity() {
             if (response is cekDataUserResponse) {
 
 
-                if(response.data?.id_worker.toString()=="null"){
-                    Log.d("testlogin1",response.data.toString())
+                if (response.data?.id_worker.toString() == "null") {
+                    Log.d("testlogin1", response.data.toString())
                     moveIntent()
-                }else{
-                    Log.d("testlogin2",response.data?.id_worker.toString())
+                } else {
+                    Log.d("testlogin2", response.data?.id_worker.toString())
                     sharedPref.put(Constant.PREF_IDWORKERP, response.data?.id_worker.toString())
                     sharedPref.put(Constant.pref_is_form, true)
                     moveIntent()

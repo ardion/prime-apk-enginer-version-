@@ -23,16 +23,10 @@ class parentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parent)
-        //bottomnav
         navController = findNavController(R.id.hostFragmen)
         bottom_navigation.setupWithNavController(navController)
-
-        //navupbutton
         appBarConfiguration = AppBarConfiguration(navController.graph, drawer_layout)
-
         NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
-
-        //Drawer Navigation
         NavigationUI.setupWithNavController(navigation_view, navController)
 
 
@@ -85,7 +79,4 @@ class parentActivity : AppCompatActivity() {
     private fun showmessage(message:String){
         Toast.makeText(applicationContext,message, Toast.LENGTH_SHORT).show()
     }
-
-
-
 }

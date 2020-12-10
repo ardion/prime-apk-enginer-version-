@@ -58,7 +58,7 @@ class addPortoActivity : AppCompatActivity() {
         }
 
         binding.btnPickImage.setOnClickListener {
-            //check runtime permission
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
                     PackageManager.PERMISSION_DENIED
@@ -115,15 +115,12 @@ class addPortoActivity : AppCompatActivity() {
 
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             binding.imageView.setImageURI(data?.data)
-
             val filePath = getPath(this, data?.data)
             val file = File(filePath)
-
             var img: MultipartBody.Part? = null
             val mediaTypeImg = "image/jpeg".toMediaType()
             val inputStream = contentResolver.openInputStream(data?.data!!)
             val reqFile: RequestBody? = inputStream?.readBytes()?.toRequestBody(mediaTypeImg)
-
             var ad = sharedPref.getString(Constant.PREF_IDWORKERP)
             val id_worker = createPartFromString("$ad")
             val name_aplication = createPartFromString(binding.etNameapk.text.toString())
@@ -151,14 +148,9 @@ class addPortoActivity : AppCompatActivity() {
                         type_portofolio,
                         img
                     )
-
                 }
-
-
             }
-
         }
-
     }
 
     fun getPath(context: Context, uri: Uri?): String {
@@ -186,8 +178,8 @@ class addPortoActivity : AppCompatActivity() {
             .toRequestBody(mediaType)
     }
 
-    fun subcribeLiveData(){
-        viewModel.isLoadingProgressBarLiveData.observe(this , Observer {
+    fun subcribeLiveData() {
+        viewModel.isLoadingProgressBarLiveData.observe(this, Observer {
             if (it) {
                 binding.progressBar.visibility = View.VISIBLE
             } else {
@@ -196,9 +188,5 @@ class addPortoActivity : AppCompatActivity() {
                 finish()
             }
         })
-
-
     }
-
-
 }

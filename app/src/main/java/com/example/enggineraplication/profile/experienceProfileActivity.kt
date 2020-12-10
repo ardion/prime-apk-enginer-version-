@@ -28,22 +28,25 @@ class experienceProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPref= PreferenceHelper(this)
-        binding = DataBindingUtil.setContentView(this,
+        sharedPref = PreferenceHelper(this)
+        binding = DataBindingUtil.setContentView(
+            this,
             R.layout.activity_experience_profile
         )
         binding.recyclerView.adapter = experienceAdabter()
         binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         useCoroutineToCallAPI()
         binding.btnAddExperience.setOnClickListener {
-//            startActivity(Intent(this, addExperienceActivity::class.java))
-            startActivityForResult(Intent(this, addExperienceActivity::class.java), addExperienceActivity.ADD_WORD_REQUEST_CODE)
+            startActivityForResult(
+                Intent(this, addExperienceActivity::class.java),
+                addExperienceActivity.ADD_WORD_REQUEST_CODE
+            )
         }
 
     }
 
     private fun useCoroutineToCallAPI() {
-//        binding.progressBar.visibility = View.VISIBLE
+
         val service = ApiClient.getApiClient(this)?.create(experienceApiService::class.java)
         val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
 
@@ -86,10 +89,11 @@ class experienceProfileActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == addExperienceActivity.ADD_WORD_REQUEST_CODE ) {
+        if (resultCode == Activity.RESULT_OK && requestCode == addExperienceActivity.ADD_WORD_REQUEST_CODE) {
             useCoroutineToCallAPI()
             binding.recyclerView.adapter = experienceAdabter()
-            binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+            binding.recyclerView.layoutManager =
+                LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
         }
     }

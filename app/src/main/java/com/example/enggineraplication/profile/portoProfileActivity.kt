@@ -23,26 +23,28 @@ import kotlinx.coroutines.*
 
 class portoProfileActivity : AppCompatActivity() {
     lateinit var binding: ActivityPortoProfileBinding
-//    private lateinit var RecycleWorker: portoAdabter
     lateinit var sharedPref: PreferenceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_porto_profile)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_porto_profile)
-        sharedPref= PreferenceHelper(this)
+        sharedPref = PreferenceHelper(this)
         useCoroutineToCallAPI()
         binding.recyclerView.adapter = portoAdabter()
         binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
         binding.btnAddPorto.setOnClickListener {
-            startActivityForResult(Intent(this, addPortoActivity::class.java), addPortoActivity.ADD_WORD_REQUEST_CODE)
+            startActivityForResult(
+                Intent(this, addPortoActivity::class.java),
+                addPortoActivity.ADD_WORD_REQUEST_CODE
+            )
         }
 
     }
 
     private fun useCoroutineToCallAPI() {
-//        binding.progressBar.visibility = View.VISIBLE
+
         val service = ApiClient.getApiClient(this)?.create(portofolioApiService::class.java)
         val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
 
@@ -86,12 +88,12 @@ class portoProfileActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == addPortoActivity.ADD_WORD_REQUEST_CODE ) {
+        if (resultCode == Activity.RESULT_OK && requestCode == addPortoActivity.ADD_WORD_REQUEST_CODE) {
             useCoroutineToCallAPI()
             binding.recyclerView.adapter = portoAdabter()
-            binding.recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+            binding.recyclerView.layoutManager =
+                LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
         }
     }
-
 }

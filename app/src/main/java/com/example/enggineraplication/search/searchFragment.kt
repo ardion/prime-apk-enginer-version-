@@ -44,9 +44,6 @@ class searchFragment : Fragment() {
         sharedPref = context?.let { PreferenceHelper(it) }!!
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-//        useCoroutineToCallAPI("")
-
-
         binding.etSearch.addTextChangedListener(object : TextWatcher {
             private var searchFor = ""
             override fun afterTextChanged(s: Editable?) = Unit
@@ -54,7 +51,6 @@ class searchFragment : Fragment() {
                 Unit
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
                 val searchText = s.toString().trim()
                 if (searchText == searchFor)
                     return
@@ -71,8 +67,6 @@ class searchFragment : Fragment() {
             }
         })
 
-//        useCoroutineToCallAPI("")
-
         setUpRecyclerView()
 
         return binding.root
@@ -81,7 +75,6 @@ class searchFragment : Fragment() {
 
 
     private fun useCoroutineToCallAPI(search: String) {
-//        binding.progressBar.visibility = View.VISIBLE
         val service =
             context?.let { ApiClient.getApiClient(it)?.create(searchapiservice::class.java) }
 
@@ -92,23 +85,19 @@ class searchFragment : Fragment() {
             binding.progressBar.visibility = View.VISIBLE
             Log.d("android1", "start : ${Thread.currentThread().name}")
 
-
-
-
             val response = withContext(Dispatchers.IO) {
                 Log.d("android1", "callApi : ${Thread.currentThread().name}")
                 try {
-                    var a=binding.spiner.selectedItem.toString()
+                    var a = binding.spiner.selectedItem.toString()
                     Log.d("koloomm", a)
 
                     if (a == "name") {
-                        service?.getAllSearchname(100,search)
-                    } else if(a=="skill"){
-                       service?.getAllSearchSkill(100,search)
+                        service?.getAllSearchname(100, search)
+                    } else if (a == "skill") {
+                        service?.getAllSearchSkill(100, search)
                     } else {
                         service?.getAllSearchDomicile(100, search)
                     }
-//
 
                 } catch (e: Throwable) {
                     e.printStackTrace()
@@ -152,8 +141,5 @@ class searchFragment : Fragment() {
         binding.recyclerView.layoutManager =
             LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
-
     }
-
-
 }
