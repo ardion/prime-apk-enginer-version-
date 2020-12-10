@@ -27,11 +27,10 @@ class homeFragment : Fragment() {
     lateinit var sharedPref: PreferenceHelper
     private lateinit var recyclerViewAndroid: homeaAdabter
     private lateinit var recyclerViewWeb: homeaAdabter2
-
     private lateinit var coroutineScope: CoroutineScope
 
     companion object {
-        const val ID_WORKER = "anjay"
+        const val ID_WORKER = "coba"
     }
 
     override fun onCreateView(
@@ -41,7 +40,6 @@ class homeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater)
         sharedPref = context?.let { PreferenceHelper(it) }!!
-        Log.d("idppppppphome", sharedPref.getString(Constant.PREF_IDWORKERP).toString())
         binding.text2.text = sharedPref.getString(Constant.NAME_USER)
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
@@ -64,7 +62,6 @@ class homeFragment : Fragment() {
         val service2 =
             context?.let { ApiClient.getApiClient(it)?.create(homeapiservice2::class.java) }
         val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
-
         coroutineScope.launch {
 
             binding.progressBar.visibility = View.VISIBLE
@@ -99,8 +96,6 @@ class homeFragment : Fragment() {
             binding.progressBar.visibility = View.GONE
             Log.d("android1", "finish : ${Thread.currentThread().name}")
         }
-
-
     }
 
 
